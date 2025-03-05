@@ -5,51 +5,31 @@
     "_generator": {
       "name": "bicep",
       "version": "0.33.93.31351",
-      "templateHash": "7681706798504087885"
+      "templateHash": "6756115956238448678"
     }
   },
   "parameters": {
-    "location": {
+    "vmShutdownTimeTimeZoneId": {
       "type": "string",
-      "defaultValue": "[resourceGroup().location]",
+      "defaultValue": "Eastern Standard Time",
       "metadata": {
-        "description": "Location for all resources; takes its default from the Resource Group."
+        "description": "The time zone for the VMs for their 20:00 auto shutdown config"
       }
-    },
-    "adminUsername": {
-      "type": "string",
-      "defaultValue": "iamroot",
-      "minLength": 6,
-      "metadata": {
-        "description": "The name of the admin account for the Domain(s)"
-      }
-    },
-    "adminPassword": {
-      "type": "securestring",
-      "defaultValue": "[format('{0}E#w2e', uniqueString(subscription().subscriptionId))]",
-      "minLength": 8,
-      "metadata": {
-        "description": "The (complex!) password for the Administrator account of the new VMs and Domain(s)"
-      }
-    },
-    "BastionName": {
-      "type": "string",
-      "defaultValue": "Bastion"
-    },
-    "BastionPublicIPName": {
-      "type": "string",
-      "defaultValue": "Bastion-ip"
     }
   },
   "variables": {
-    "vmShutdownTimeTimeZoneId": "Eastern Standard Time"
+    "adminUsername": "iamroot",
+    "adminPassword": "[format('{0}E#w2e', uniqueString(subscription().subscriptionId))]",
+    "location": "[resourceGroup().location]",
+    "BastionName": "Bastion",
+    "BastionPublicIPName": "Bastion-ip"
   },
   "resources": [
     {
       "type": "Microsoft.Network/networkSecurityGroups",
       "apiVersion": "2020-05-01",
       "name": "contosoVnetNSG",
-      "location": "[parameters('location')]",
+      "location": "[variables('location')]",
       "properties": {
         "securityRules": []
       }
@@ -58,7 +38,7 @@
       "type": "Microsoft.Network/virtualNetworks",
       "apiVersion": "2020-03-01",
       "name": "contosoVnet",
-      "location": "[parameters('location')]",
+      "location": "[variables('location')]",
       "properties": {
         "dhcpOptions": {
           "dnsServers": [
@@ -89,7 +69,7 @@
     {
       "type": "Microsoft.Network/publicIPAddresses",
       "apiVersion": "2020-11-01",
-      "name": "[parameters('BastionPublicIPName')]",
+      "name": "[variables('BastionPublicIPName')]",
       "location": "[resourceGroup().location]",
       "sku": {
         "name": "Standard"
@@ -102,7 +82,7 @@
     {
       "type": "Microsoft.Network/bastionHosts",
       "apiVersion": "2020-11-01",
-      "name": "[parameters('BastionName')]",
+      "name": "[variables('BastionName')]",
       "location": "[resourceGroup().location]",
       "sku": {
         "name": "Basic"
@@ -114,7 +94,7 @@
             "properties": {
               "privateIPAllocationMethod": "Dynamic",
               "publicIPAddress": {
-                "id": "[resourceId('Microsoft.Network/publicIPAddresses', parameters('BastionPublicIPName'))]"
+                "id": "[resourceId('Microsoft.Network/publicIPAddresses', variables('BastionPublicIPName'))]"
               },
               "subnet": {
                 "id": "[format('{0}/subnets/AzureBastionSubnet', resourceId('Microsoft.Network/virtualNetworks', 'contosoVnet'))]"
@@ -124,7 +104,7 @@
         ]
       },
       "dependsOn": [
-        "[resourceId('Microsoft.Network/publicIPAddresses', parameters('BastionPublicIPName'))]",
+        "[resourceId('Microsoft.Network/publicIPAddresses', variables('BastionPublicIPName'))]",
         "[resourceId('Microsoft.Network/virtualNetworks', 'contosoVnet')]"
       ]
     },
@@ -148,19 +128,19 @@
             "value": "contosoSubnet"
           },
           "vmShutdownTimeTimeZoneId": {
-            "value": "[variables('vmShutdownTimeTimeZoneId')]"
+            "value": "[parameters('vmShutdownTimeTimeZoneId')]"
           },
           "vmIpAddress": {
             "value": "192.168.1.10"
           },
           "adminUsername": {
-            "value": "[parameters('adminUsername')]"
+            "value": "[variables('adminUsername')]"
           },
           "adminPassword": {
-            "value": "[parameters('adminPassword')]"
+            "value": "[variables('adminPassword')]"
           },
           "adminFullUsername": {
-            "value": "[format('{0}@contoso.local', parameters('adminUsername'))]"
+            "value": "[format('{0}@contoso.local', variables('adminUsername'))]"
           },
           "imageReference": {
             "value": {
@@ -177,7 +157,7 @@
             "value": true
           },
           "location": {
-            "value": "[parameters('location')]"
+            "value": "[variables('location')]"
           }
         },
         "template": {
@@ -493,19 +473,19 @@
             "value": "contosoSubnet"
           },
           "vmShutdownTimeTimeZoneId": {
-            "value": "[variables('vmShutdownTimeTimeZoneId')]"
+            "value": "[parameters('vmShutdownTimeTimeZoneId')]"
           },
           "vmIpAddress": {
             "value": "192.168.1.110"
           },
           "adminUsername": {
-            "value": "[parameters('adminUsername')]"
+            "value": "[variables('adminUsername')]"
           },
           "adminPassword": {
-            "value": "[parameters('adminPassword')]"
+            "value": "[variables('adminPassword')]"
           },
           "adminFullUsername": {
-            "value": "[format('{0}@contoso.local', parameters('adminUsername'))]"
+            "value": "[format('{0}@contoso.local', variables('adminUsername'))]"
           },
           "imageReference": {
             "value": {
@@ -522,7 +502,7 @@
             "value": false
           },
           "location": {
-            "value": "[parameters('location')]"
+            "value": "[variables('location')]"
           }
         },
         "template": {
