@@ -5,15 +5,22 @@
     "_generator": {
       "name": "bicep",
       "version": "0.33.93.31351",
-      "templateHash": "6756115956238448678"
+      "templateHash": "14005689686625869644"
     }
   },
   "parameters": {
     "vmShutdownTimeTimeZoneId": {
       "type": "string",
-      "defaultValue": "Eastern Standard Time",
+      "defaultValue": "Pacific Standard Time",
       "metadata": {
-        "description": "The time zone for the VMs for their 20:00 auto shutdown config"
+        "description": "The time zone for the VMs"
+      }
+    },
+    "vmShutdownTime": {
+      "type": "string",
+      "defaultValue": "20:00",
+      "metadata": {
+        "description": "20:00: The time the VM should shutdown."
       }
     }
   },
@@ -129,6 +136,9 @@
           },
           "vmShutdownTimeTimeZoneId": {
             "value": "[parameters('vmShutdownTimeTimeZoneId')]"
+          },
+          "vmShutdownTime": {
+            "value": "[parameters('vmShutdownTime')]"
           },
           "vmIpAddress": {
             "value": "192.168.1.10"
@@ -474,6 +484,9 @@
           },
           "vmShutdownTimeTimeZoneId": {
             "value": "[parameters('vmShutdownTimeTimeZoneId')]"
+          },
+          "vmShutdownTime": {
+            "value": "[parameters('vmShutdownTime')]"
           },
           "vmIpAddress": {
             "value": "192.168.1.110"
