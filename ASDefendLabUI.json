@@ -4,12 +4,9 @@
     "version": "0.1.2-preview",
     "parameters": {
         "config": {
-            "isWizard": false,
             "basics": {
-                "description": "Customized description with **markdown**, see [more](https://www.microsoft.com).",
                 "location": {
-                    "label": "Custom label for location",
-                    "toolTip": "provide tooltip",
+                    "label": "Deployment Region",
                     "resourceTypes": [
                         "Microsoft.Compute/virtualMachines"
                     ],
