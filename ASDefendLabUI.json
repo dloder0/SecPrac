@@ -570,7 +570,8 @@
         "outputs": {
             "location": "[location()]",
             "vmShutdownTimeTimeZoneId": "[basics('vmShutdownTimeTimeZoneId')]",
-            "vmShutdownTime": "[basics('vmShutdownTime')]"
+            "vmShutdownTime": "[basics('vmShutdownTime')]",
+            "applicationResourceName": "ASDefendLab"
         }
     }
 }
