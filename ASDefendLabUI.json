@@ -11,8 +11,32 @@
                         "Microsoft.Compute/virtualMachines"
                     ],
                     "allowedValues": [
-                        "eastus2",
-                        "westus2"
+                        "Australia East",
+                        "Australia Southeast",
+                        "Brazil South",
+                        "Canada Central",
+                        "Canada East",
+                        "Central India",
+                        "Central US",
+                        "East Asia",
+                        "East US 2",
+                        "France Central",
+                        "Germany West Central",
+                        "Israel Central",
+                        "Italy North",
+                        "Japan West",
+                        "Jio India West",
+                        "Korea Central",
+                        "North Europe",
+                        "Norway East",
+                        "Southeast Asia",
+                        "Sweden Central",
+                        "UAE North",
+                        "UK South",
+                        "UK West",
+                        "West Central US",
+                        "West Europe",
+                        "West US"
                     ],
                     "visible": true
                 }
@@ -570,8 +594,7 @@
         "outputs": {
             "location": "[location()]",
             "vmShutdownTimeTimeZoneId": "[basics('vmShutdownTimeTimeZoneId')]",
-            "vmShutdownTime": "[basics('vmShutdownTime')]",
-            "applicationResourceName": "ASDefendLab"
+            "vmShutdownTime": "[basics('vmShutdownTime')]"
         }
     }
 }
