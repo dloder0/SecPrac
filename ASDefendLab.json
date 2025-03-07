@@ -5,7 +5,7 @@
     "_generator": {
       "name": "bicep",
       "version": "0.33.93.31351",
-      "templateHash": "14887871074400187689"
+      "templateHash": "13412799150085522052"
     }
   },
   "parameters": {
@@ -1199,7 +1199,7 @@
             "value": "[variables('adminPassword')]"
           },
           "adminFullUsername": {
-            "value": "[format('{0}@contoso.local', variables('adminUsername'))]"
+            "value": "[variables('adminUsername')]"
           },
           "imageReference": {
             "value": {
