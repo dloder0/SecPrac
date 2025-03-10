@@ -5,7 +5,7 @@
     "_generator": {
       "name": "bicep",
       "version": "0.33.93.31351",
-      "templateHash": "13309296929381158876"
+      "templateHash": "5147804767029682952"
     }
   },
   "parameters": {
@@ -92,6 +92,28 @@
       }
     },
     {
+      "condition": "[contains(variables('USMapping'), variables('location'))]",
+      "type": "Microsoft.Network/virtualNetworks",
+      "apiVersion": "2020-03-01",
+      "name": "BastionVnet",
+      "location": "northcentralus",
+      "properties": {
+        "subnets": [
+          {
+            "name": "BastionSubnet",
+            "properties": {
+              "addressPrefix": "10.3.0.0/24"
+            }
+          }
+        ],
+        "addressSpace": {
+          "addressPrefixes": [
+            "10.3.0.0/16"
+          ]
+        }
+      }
+    },
+    {
       "type": "Microsoft.Network/bastionHosts",
       "apiVersion": "2024-05-01",
       "name": "[variables('BastionName')]",
@@ -110,28 +132,6 @@
       "dependsOn": [
         "[resourceId('Microsoft.Network/virtualNetworks', 'BastionVnet')]"
       ]
-    },
-    {
-      "condition": "[contains(variables('USMapping'), variables('location'))]",
-      "type": "Microsoft.Network/virtualNetworks",
-      "apiVersion": "2020-03-01",
-      "name": "BastionVnet",
-      "location": "[variables('location')]",
-      "properties": {
-        "subnets": [
-          {
-            "name": "BastionSubnet",
-            "properties": {
-              "addressPrefix": "10.3.0.0/24"
-            }
-          }
-        ],
-        "addressSpace": {
-          "addressPrefixes": [
-            "10.3.0.0/16"
-          ]
-        }
-      }
     }
   ]
 }
