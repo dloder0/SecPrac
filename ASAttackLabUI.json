@@ -50,6 +50,15 @@
                 "options": {
                     "icon": "None",
                     "text": "Before deploying this lab you must accept the Kali license. In your Azure PowerShell Cloud Shell run the following command:\r\naz vm image terms accept --urn kali-linux:kali:kali-2024-3:latest",
+                }
+            },
+            {
+                "name": "info2",
+                "type": "Microsoft.Common.InfoBox",
+                "visible": true,
+                "options": {
+                    "icon": "None",
+                    "text": "Click this box for more info on starting Azure PowerShell Cloud Shell.",
                     "uri": "https://learn.microsoft.com/en-us/azure/cloud-shell/get-started/ephemeral?tabs=azurecli"
                 }
             },
