@@ -5,7 +5,7 @@
     "_generator": {
       "name": "bicep",
       "version": "0.33.93.31351",
-      "templateHash": "5147804767029682952"
+      "templateHash": "10045834981247890543"
     }
   },
   "parameters": {
@@ -95,7 +95,7 @@
       "condition": "[contains(variables('USMapping'), variables('location'))]",
       "type": "Microsoft.Network/virtualNetworks",
       "apiVersion": "2020-03-01",
-      "name": "BastionVnet",
+      "name": "BastionVnetNCUS",
       "location": "northcentralus",
       "properties": {
         "subnets": [
@@ -112,26 +112,6 @@
           ]
         }
       }
-    },
-    {
-      "type": "Microsoft.Network/bastionHosts",
-      "apiVersion": "2024-05-01",
-      "name": "[variables('BastionName')]",
-      "location": "northcentralus",
-      "sku": {
-        "name": "Developer"
-      },
-      "properties": {
-        "dnsName": "[format('omnibrain.northcentralus.{0}global.azure.com', variables('BastionName'))]",
-        "scaleUnits": 2,
-        "virtualNetwork": {
-          "id": "[resourceId('Microsoft.Network/virtualNetworks', 'BastionVnet')]"
-        },
-        "ipConfigurations": []
-      },
-      "dependsOn": [
-        "[resourceId('Microsoft.Network/virtualNetworks', 'BastionVnet')]"
-      ]
     }
   ]
 }
