@@ -5,7 +5,7 @@
     "_generator": {
       "name": "bicep",
       "version": "0.33.93.31351",
-      "templateHash": "10021874709009191133"
+      "templateHash": "1730468270726334103"
     }
   },
   "parameters": {
@@ -116,7 +116,7 @@
     {
       "type": "Microsoft.Network/bastionHosts",
       "apiVersion": "2024-05-01",
-      "name": "[variables('BastionName')]",
+      "name": "[format('{0}US', variables('BastionName'))]",
       "location": "northcentralus",
       "sku": {
         "name": "Developer"
@@ -158,7 +158,7 @@
     {
       "type": "Microsoft.Network/bastionHosts",
       "apiVersion": "2024-05-01",
-      "name": "[variables('BastionName')]",
+      "name": "[format('{0}EU', variables('BastionName'))]",
       "location": "northeurope",
       "sku": {
         "name": "Developer"
