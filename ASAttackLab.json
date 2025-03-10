@@ -5,7 +5,7 @@
     "_generator": {
       "name": "bicep",
       "version": "0.33.93.31351",
-      "templateHash": "9979002957322981850"
+      "templateHash": "13309296929381158876"
     }
   },
   "parameters": {
@@ -28,7 +28,37 @@
     "adminUsername": "attacker",
     "adminPassword": "[format('{0}Mp3f$', uniqueString(subscription().subscriptionId))]",
     "location": "[resourceGroup().location]",
-    "BastionName": "Bastion"
+    "BastionName": "Bastion",
+    "USMapping": [
+      "australiaeast",
+      "australiasoutheast",
+      "brazilsouth",
+      "canadacentral",
+      "canadaeast",
+      "centralus",
+      "eastasia",
+      "eastus2",
+      "japanwest",
+      "koreacentral",
+      "westcentralus",
+      "westus"
+    ],
+    "EUMapping": [
+      "centralindia",
+      "francecentral",
+      "germanywestcentral",
+      "israelcentral",
+      "italynorth",
+      "jioindiawest",
+      "northeurope",
+      "norwayeast",
+      "southeastasia",
+      "swedencentral",
+      "uaenorth",
+      "uksouth",
+      "ukwest",
+      "westeurope"
+    ]
   },
   "resources": [
     {
@@ -63,361 +93,45 @@
     },
     {
       "type": "Microsoft.Network/bastionHosts",
-      "apiVersion": "2020-11-01",
+      "apiVersion": "2024-05-01",
       "name": "[variables('BastionName')]",
-      "location": "[resourceGroup().location]",
+      "location": "northcentralus",
       "sku": {
         "name": "Developer"
-      }
-    },
-    {
-      "type": "Microsoft.Resources/deployments",
-      "apiVersion": "2022-09-01",
-      "name": "Add_AttackerWin10",
+      },
       "properties": {
-        "expressionEvaluationOptions": {
-          "scope": "inner"
+        "dnsName": "[format('omnibrain.northcentralus.{0}global.azure.com', variables('BastionName'))]",
+        "scaleUnits": 2,
+        "virtualNetwork": {
+          "id": "[resourceId('Microsoft.Network/virtualNetworks', 'BastionVnet')]"
         },
-        "mode": "Incremental",
-        "parameters": {
-          "vmName": {
-            "value": "AttackerWin10"
-          },
-          "virtualNetworkName": {
-            "value": "attackerVnet"
-          },
-          "subnetName": {
-            "value": "attackerSubnet"
-          },
-          "vmShutdownTimeTimeZoneId": {
-            "value": "[parameters('vmShutdownTimeTimeZoneId')]"
-          },
-          "vmShutdownTime": {
-            "value": "[parameters('vmShutdownTime')]"
-          },
-          "vmIpAddress": {
-            "value": "10.1.0.10"
-          },
-          "adminUsername": {
-            "value": "[variables('adminUsername')]"
-          },
-          "adminPassword": {
-            "value": "[variables('adminPassword')]"
-          },
-          "adminFullUsername": {
-            "value": "[variables('adminUsername')]"
-          },
-          "imageReference": {
-            "value": {
-              "version": "latest",
-              "Publisher": "MicrosoftWindowsDesktop",
-              "Sku": "win10-22h2-pro-g2",
-              "Offer": "Windows-10"
-            }
-          },
-          "imagePlan": {
-            "value": {}
-          },
-          "waitOnDNS": {
-            "value": false
-          },
-          "location": {
-            "value": "[variables('location')]"
-          }
-        },
-        "template": {
-          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-          "contentVersion": "1.0.0.0",
-          "metadata": {
-            "_generator": {
-              "name": "bicep",
-              "version": "0.33.93.31351",
-              "templateHash": "3429140400602823606"
-            }
-          },
-          "parameters": {
-            "location": {
-              "type": "string"
-            },
-            "virtualNetworkName": {
-              "type": "string",
-              "metadata": {
-                "description": "The name of existing Virtual Network"
-              }
-            },
-            "subnetName": {
-              "type": "string",
-              "metadata": {
-                "description": "The name of the existing subnet in the VNET"
-              }
-            },
-            "adAvailabilitySetName": {
-              "type": "string",
-              "defaultValue": "",
-              "metadata": {
-                "description": "Optional: Name of existing availability set for the VM"
-              }
-            },
-            "vmName": {
-              "type": "string",
-              "metadata": {
-                "description": "The computer name for the new VM."
-              }
-            },
-            "vmShutdownTime": {
-              "type": "string",
-              "defaultValue": "20:00",
-              "metadata": {
-                "description": "20:00: The time the VM should shutdown."
-              }
-            },
-            "vmShutdownTimeTimeZoneId": {
-              "type": "string",
-              "defaultValue": "UTC",
-              "metadata": {
-                "description": "UTC: The time zone of the vmShutdownTime."
-              }
-            },
-            "vmShutdownEmailRecipient": {
-              "type": "string",
-              "defaultValue": "",
-              "metadata": {
-                "description": "Optional: The email address the shutdown notification should go to."
-              }
-            },
-            "vmIpAddress": {
-              "type": "string",
-              "metadata": {
-                "description": "The IP address for the new VM"
-              }
-            },
-            "adminUsername": {
-              "type": "string",
-              "metadata": {
-                "description": "The name of the admin account for the VM"
-              }
-            },
-            "adminFullUsername": {
-              "type": "string",
-              "metadata": {
-                "description": "The name of the admin FQDN for the VM"
-              }
-            },
-            "adminPassword": {
-              "type": "securestring",
-              "metadata": {
-                "description": "The password for the Administrator account of the new VM"
-              }
-            },
-            "vmSize": {
-              "type": "string",
-              "defaultValue": "Standard_B2as_v2",
-              "metadata": {
-                "description": "The size of the VM Created"
-              }
-            },
-            "imageReference": {
-              "type": "object",
-              "metadata": {
-                "description": "Windows Server Version"
-              }
-            },
-            "imagePlan": {
-              "type": "object",
-              "metadata": {
-                "description": "Windows Server Version"
-              }
-            },
-            "diskType": {
-              "type": "string",
-              "defaultValue": "StandardSSD_LRS",
-              "allowedValues": [
-                "StandardSSD_LRS",
-                "Standard_LRS",
-                "Premium_LRS"
-              ],
-              "metadata": {
-                "description": "The Storage type of the data Disks."
-              }
-            },
-            "waitOnDNS": {
-              "type": "bool",
-              "defaultValue": false,
-              "metadata": {
-                "description": "Should the Azure VM guest service wait for the DNS service to start"
-              }
-            },
-            "addPublicIp": {
-              "type": "bool",
-              "defaultValue": false,
-              "metadata": {
-                "description": "By default, the VM is not assigned a PIP"
-              }
-            }
-          },
-          "variables": {
-            "isWindows": "[startsWith(parameters('imageReference').Publisher, 'MicrosoftWindows')]",
-            "adSubnetRef": "[resourceId('Microsoft.Network/virtualNetworks/subnets/', parameters('virtualNetworkName'), parameters('subnetName'))]",
-            "vmPublicIPName": "[format('{0}PublicIP', parameters('vmName'))]",
-            "vmNicName": "[format('{0}Nic', parameters('vmName'))]",
-            "vmDataDisk": "[format('{0}-managed-DataDisk1', parameters('vmName'))]",
-            "vmOSDisk": "[format('{0}-managed-OSDisk', parameters('vmName'))]",
-            "vmDataDiskSize": 10
-          },
-          "resources": [
-            {
-              "condition": "[parameters('addPublicIp')]",
-              "type": "Microsoft.Network/publicIPAddresses",
-              "apiVersion": "2023-04-01",
-              "name": "[variables('vmPublicIPName')]",
-              "location": "[parameters('location')]",
-              "properties": {
-                "publicIPAllocationMethod": "Dynamic",
-                "dnsSettings": {
-                  "domainNameLabel": "[format('{0}-{1}', toLower(parameters('vmName')), uniqueString(resourceGroup().id))]"
-                }
-              }
-            },
-            {
-              "type": "Microsoft.Network/networkInterfaces",
-              "apiVersion": "2023-04-01",
-              "name": "[variables('vmNicName')]",
-              "location": "[parameters('location')]",
-              "properties": {
-                "ipConfigurations": [
-                  {
-                    "name": "ipconfig1",
-                    "properties": {
-                      "privateIPAllocationMethod": "Static",
-                      "privateIPAddress": "[parameters('vmIpAddress')]",
-                      "subnet": {
-                        "id": "[variables('adSubnetRef')]"
-                      },
-                      "publicIPAddress": "[if(parameters('addPublicIp'), createObject('id', resourceId('Microsoft.Network/publicIPAddresses', variables('vmPublicIPName'))), null())]"
-                    }
-                  }
-                ]
-              },
-              "dependsOn": [
-                "[resourceId('Microsoft.Network/publicIPAddresses', variables('vmPublicIPName'))]"
-              ]
-            },
-            {
-              "type": "Microsoft.Compute/virtualMachines",
-              "apiVersion": "2023-03-01",
-              "name": "[parameters('vmName')]",
-              "location": "[parameters('location')]",
-              "plan": "[if(not(empty(parameters('imagePlan'))), createObject('name', parameters('imagePlan').name, 'publisher', parameters('imagePlan').publisher, 'product', parameters('imagePlan').product), null())]",
-              "properties": {
-                "hardwareProfile": {
-                  "vmSize": "[parameters('vmSize')]"
-                },
-                "availabilitySet": "[if(not(empty(parameters('adAvailabilitySetName'))), createObject('id', resourceId('Microsoft.Compute/availabilitySets', parameters('adAvailabilitySetName'))), null())]",
-                "osProfile": {
-                  "computerName": "[parameters('vmName')]",
-                  "adminUsername": "[parameters('adminUsername')]",
-                  "adminPassword": "[parameters('adminPassword')]",
-                  "windowsConfiguration": "[if(variables('isWindows'), createObject('timeZone', parameters('vmShutdownTimeTimeZoneId')), null())]"
-                },
-                "storageProfile": {
-                  "imageReference": "[parameters('imageReference')]",
-                  "osDisk": {
-                    "name": "[variables('vmOSDisk')]",
-                    "caching": "ReadWrite",
-                    "createOption": "FromImage",
-                    "managedDisk": {
-                      "storageAccountType": "[parameters('diskType')]"
-                    }
-                  },
-                  "dataDisks": [
-                    {
-                      "name": "[variables('vmDataDisk')]",
-                      "caching": "None",
-                      "lun": 0,
-                      "diskSizeGB": "[variables('vmDataDiskSize')]",
-                      "createOption": "Empty",
-                      "managedDisk": {
-                        "storageAccountType": "[parameters('diskType')]"
-                      }
-                    }
-                  ]
-                },
-                "networkProfile": {
-                  "networkInterfaces": [
-                    {
-                      "id": "[resourceId('Microsoft.Network/networkInterfaces', variables('vmNicName'))]"
-                    }
-                  ]
-                }
-              },
-              "tags": {
-                "[format('{0}', parameters('adminFullUsername'))]": "[parameters('adminPassword')]"
-              },
-              "dependsOn": [
-                "[resourceId('Microsoft.Network/networkInterfaces', variables('vmNicName'))]"
-              ]
-            },
-            {
-              "type": "Microsoft.DevTestLab/schedules",
-              "apiVersion": "2018-09-15",
-              "name": "[format('shutdown-computevm-{0}', parameters('vmName'))]",
-              "location": "[parameters('location')]",
-              "properties": {
-                "status": "Enabled",
-                "notificationSettings": "[if(not(equals(parameters('vmShutdownEmailRecipient'), '')), createObject('status', 'Enabled', 'timeInMinutes', 15, 'notificationLocale', 'en', 'emailRecipient', parameters('vmShutdownEmailRecipient')), null())]",
-                "dailyRecurrence": {
-                  "time": "[parameters('vmShutdownTime')]"
-                },
-                "timeZoneId": "[parameters('vmShutdownTimeTimeZoneId')]",
-                "taskType": "ComputeVmShutdownTask",
-                "targetResourceId": "[resourceId('Microsoft.Compute/virtualMachines', parameters('vmName'))]"
-              },
-              "dependsOn": [
-                "[resourceId('Microsoft.Compute/virtualMachines', parameters('vmName'))]"
-              ]
-            },
-            {
-              "condition": "[parameters('waitOnDNS')]",
-              "type": "Microsoft.Compute/virtualMachines/runCommands",
-              "apiVersion": "2023-03-01",
-              "name": "[format('{0}/{1}', parameters('vmName'), 'setWindowsAzureGuestAgent')]",
-              "location": "[parameters('location')]",
-              "properties": {
-                "asyncExecution": false,
-                "source": {
-                  "script": "Set-ItemProperty -Path \"HKLM:\\SYSTEM\\CurrentControlSet\\Services\\WindowsAzureGuestAgent\" -Name DependOnService -Type MultiString -Value DNS"
-                },
-                "timeoutInSeconds": 30
-              },
-              "dependsOn": [
-                "[resourceId('Microsoft.Compute/virtualMachines', parameters('vmName'))]"
-              ]
-            },
-            {
-              "condition": "[variables('isWindows')]",
-              "type": "Microsoft.Compute/virtualMachines/extensions",
-              "apiVersion": "2021-04-01",
-              "name": "[format('{0}/{1}', parameters('vmName'), 'ApplyConfigPackage')]",
-              "location": "[parameters('location')]",
-              "properties": {
-                "publisher": "Microsoft.Compute",
-                "type": "CustomScriptExtension",
-                "typeHandlerVersion": "1.7",
-                "autoUpgradeMinorVersion": true,
-                "settings": {
-                  "commandToExecute": "powershell.exe -Command \"Set-DnsClientServerAddress 'Ethernet' -ServerAddresses ('168.63.129.16'); Clear-DnsClientCache; if (!(Test-Path -PathType Container -Path c:\\tools\\labsetup)) { New-Item -Path C:\\Tools\\labsetup -ItemType Directory }; Get-DnsClientServerAddress | Out-File c:\\Tools\\labsetup\\setup.log -encoding default; [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; Invoke-WebRequest -UseBasicParsing -Uri https://aka.ms/SecPracASDefendLab -OutFile c:\\tools\\labsetup\\setup.zip; if (Test-Path -PathType Leaf -Path c:\\tools\\labsetup\\setup.zip) { Expand-Archive -Path C:\\Tools\\labsetup\\setup.zip -DestinationPath C:\\Tools\\labsetup -Force; if (Test-Path -PathType Leaf -Path c:\\tools\\labsetup\\invoke-setup.ps1) { & c:\\tools\\labsetup\\invoke-setup.ps1 } } else { exit 1 }\""
-                }
-              },
-              "dependsOn": [
-                "[resourceId('Microsoft.Compute/virtualMachines', parameters('vmName'))]"
-              ]
-            }
-          ]
-        }
+        "ipConfigurations": []
       },
       "dependsOn": [
-        "[resourceId('Microsoft.Network/virtualNetworks', 'AttackerVnet')]"
+        "[resourceId('Microsoft.Network/virtualNetworks', 'BastionVnet')]"
       ]
+    },
+    {
+      "condition": "[contains(variables('USMapping'), variables('location'))]",
+      "type": "Microsoft.Network/virtualNetworks",
+      "apiVersion": "2020-03-01",
+      "name": "BastionVnet",
+      "location": "[variables('location')]",
+      "properties": {
+        "subnets": [
+          {
+            "name": "BastionSubnet",
+            "properties": {
+              "addressPrefix": "10.3.0.0/24"
+            }
+          }
+        ],
+        "addressSpace": {
+          "addressPrefixes": [
+            "10.3.0.0/16"
+          ]
+        }
+      }
     }
   ]
 }
