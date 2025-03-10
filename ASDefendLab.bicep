@@ -10,16 +10,16 @@ var location = resourceGroup().location
 var BastionName = 'Bastion'
 var BastionPublicIPName = 'Bastion-ip'
 
-resource Create_contosoVnetNSG 'Microsoft.Network/networkSecurityGroups@2020-05-01' = {
-  name: 'contosoVnetNSG'
+resource Create_contosoVNetNSG 'Microsoft.Network/networkSecurityGroups@2020-05-01' = {
+  name: 'contosoVNetNSG'
   location: location
   properties: {
     securityRules: []
   }
 }
 
-resource Create_contosoVnet 'Microsoft.Network/virtualNetworks@2020-03-01' = {
-  name: 'contosoVnet'
+resource Create_contosoVNet 'Microsoft.Network/virtualNetworks@2020-03-01' = {
+  name: 'contosoVNet'
   location: location
   properties: {
     dhcpOptions: {
@@ -78,7 +78,7 @@ resource Bastion 'Microsoft.Network/bastionHosts@2020-11-01' = {
             id: BastionPublicIP.id
           }
           subnet: {
-            id: '${Create_contosoVnet.id}/subnets/AzureBastionSubnet'
+            id: '${Create_contosoVNet.id}/subnets/AzureBastionSubnet'
           }
         }
       }
@@ -91,7 +91,7 @@ module Add_SVR19_DC1 './createVirtualMachine.bicep' = {
   name: 'Add_SVR19_DC1'
   params: {
     vmName: 'SVR19-DC1'
-    virtualNetworkName: 'contosoVnet'
+    virtualNetworkName: 'contosoVNet'
     subnetName: 'contosoSubnet'
     vmShutdownTimeTimeZoneId: vmShutdownTimeTimeZoneId
     vmShutdownTime: vmShutdownTime
@@ -112,7 +112,7 @@ module Add_SVR19_DC1 './createVirtualMachine.bicep' = {
     location: location
   }
     dependsOn: [
-      Create_contosoVnet
+      Create_contosoVNet
   ]
 }
 
@@ -120,7 +120,7 @@ module Add_Win10_ADM './createVirtualMachine.bicep' = {
   name: 'Add_Win10_ADM'
   params: {
     vmName: 'Win10-ADM'
-    virtualNetworkName: 'contosoVnet'
+    virtualNetworkName: 'contosoVNet'
     subnetName: 'contosoSubnet'
     vmShutdownTimeTimeZoneId: vmShutdownTimeTimeZoneId
     vmShutdownTime: vmShutdownTime
@@ -141,7 +141,7 @@ module Add_Win10_ADM './createVirtualMachine.bicep' = {
     location: location
   }
     dependsOn: [
-      Create_contosoVnet
+      Create_contosoVNet
       Add_SVR19_DC1
   ]
 }
@@ -150,7 +150,7 @@ module Add_Win10_CEO './createVirtualMachine.bicep' = {
   name: 'Add_Win10_CEO'
   params: {
     vmName: 'Win10-CEO'
-    virtualNetworkName: 'contosoVnet'
+    virtualNetworkName: 'contosoVNet'
     subnetName: 'contosoSubnet'
     vmShutdownTimeTimeZoneId: vmShutdownTimeTimeZoneId
     vmShutdownTime: vmShutdownTime
@@ -171,7 +171,7 @@ module Add_Win10_CEO './createVirtualMachine.bicep' = {
     location: location
   }
     dependsOn: [
-      Create_contosoVnet
+      Create_contosoVNet
       Add_SVR19_DC1
   ]
 }
@@ -180,7 +180,7 @@ module Add_Win11_USR './createVirtualMachine.bicep' = {
   name: 'Add_Win11_USR'
   params: {
     vmName: 'Win11-USR'
-    virtualNetworkName: 'contosoVnet'
+    virtualNetworkName: 'contosoVNet'
     subnetName: 'contosoSubnet'
     vmShutdownTimeTimeZoneId: vmShutdownTimeTimeZoneId
     vmShutdownTime: vmShutdownTime
@@ -201,7 +201,7 @@ module Add_Win11_USR './createVirtualMachine.bicep' = {
     location: location
   }
     dependsOn: [
-      Create_contosoVnet
+      Create_contosoVNet
   ]
 }
 
@@ -209,7 +209,7 @@ module Add_SVR16_ADFS './createVirtualMachine.bicep' = {
   name: 'Add_SVR16_ADFS'
   params: {
     vmName: 'SVR16-ADFS'
-    virtualNetworkName: 'contosoVnet'
+    virtualNetworkName: 'contosoVNet'
     subnetName: 'contosoSubnet'
     vmShutdownTimeTimeZoneId: vmShutdownTimeTimeZoneId
     vmShutdownTime: vmShutdownTime
@@ -230,7 +230,7 @@ module Add_SVR16_ADFS './createVirtualMachine.bicep' = {
     location: location
   }
     dependsOn: [
-      Create_contosoVnet
+      Create_contosoVNet
       Add_SVR19_DC1
   ]
 }
@@ -239,7 +239,7 @@ module Add_SVR19_PKI './createVirtualMachine.bicep' = {
   name: 'Add_SVR19_PKI'
   params: {
     vmName: 'SVR19-PKI'
-    virtualNetworkName: 'contosoVnet'
+    virtualNetworkName: 'contosoVNet'
     subnetName: 'contosoSubnet'
     vmShutdownTimeTimeZoneId: vmShutdownTimeTimeZoneId
     vmShutdownTime: vmShutdownTime
@@ -260,7 +260,7 @@ module Add_SVR19_PKI './createVirtualMachine.bicep' = {
     location: location
   }
     dependsOn: [
-      Create_contosoVnet
+      Create_contosoVNet
       Add_SVR19_DC1
   ]
 }
@@ -269,7 +269,7 @@ module Add_SVR22_SYNC './createVirtualMachine.bicep' = {
   name: 'Add_SVR22_SYNC'
   params: {
     vmName: 'SVR22-SYNC'
-    virtualNetworkName: 'contosoVnet'
+    virtualNetworkName: 'contosoVNet'
     subnetName: 'contosoSubnet'
     vmShutdownTimeTimeZoneId: vmShutdownTimeTimeZoneId
     vmShutdownTime: vmShutdownTime
@@ -290,7 +290,7 @@ module Add_SVR22_SYNC './createVirtualMachine.bicep' = {
     location: location
   }
     dependsOn: [
-      Create_contosoVnet
+      Create_contosoVNet
       Add_SVR19_DC1
   ]
 }
@@ -299,7 +299,7 @@ module Add_Ubuntu_Proxy './createVirtualMachine.bicep' = {
   name: 'Add_Ubuntu_Proxy'
   params: {
     vmName: 'Ubuntu-Proxy'
-    virtualNetworkName: 'contosoVnet'
+    virtualNetworkName: 'contosoVNet'
     subnetName: 'contosoSubnet'
     vmShutdownTimeTimeZoneId: vmShutdownTimeTimeZoneId
     vmShutdownTime: vmShutdownTime
@@ -320,7 +320,7 @@ module Add_Ubuntu_Proxy './createVirtualMachine.bicep' = {
     location: location
   }
     dependsOn: [
-      Create_contosoVnet
+      Create_contosoVNet
   ]
 }
 
