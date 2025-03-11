@@ -44,6 +44,15 @@
         },
         "basics": [
             {
+                "name": "info1",
+                "type": "Microsoft.Common.InfoBox",
+                "visible": true,
+                "options": {
+                    "icon": "None",
+                    "text": "We highly recommend choosing East US 2 as the region. Other regions may be blocked for MCAPS subscriptions."
+                }
+            },
+           {
                 "name": "vmShutdownTimeTimeZoneId",
                 "type": "Microsoft.Common.DropDown",
                 "label": "Time Zone for the VMs",
