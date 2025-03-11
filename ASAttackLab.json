@@ -5,7 +5,7 @@
     "_generator": {
       "name": "bicep",
       "version": "0.33.93.31351",
-      "templateHash": "2968854348471157063"
+      "templateHash": "17744812185694183245"
     }
   },
   "parameters": {
@@ -28,154 +28,17 @@
     "adminUsername": "attacker",
     "adminPassword": "[format('{0}E#w2e', uniqueString(subscription().subscriptionId))]",
     "location": "[resourceGroup().location]",
-    "BastionName": "Bastion",
-    "USMapping": [
-      "australiaeast",
-      "australiasoutheast",
-      "brazilsouth",
-      "canadacentral",
-      "canadaeast",
-      "centralus",
-      "eastasia",
-      "eastus2",
-      "japanwest",
-      "koreacentral",
-      "westcentralus",
-      "westus"
-    ],
-    "EUMapping": [
-      "centralindia",
-      "francecentral",
-      "germanywestcentral",
-      "israelcentral",
-      "italynorth",
-      "jioindiawest",
-      "northeurope",
-      "norwayeast",
-      "southeastasia",
-      "swedencentral",
-      "uaenorth",
-      "uksouth",
-      "ukwest",
-      "westeurope"
-    ]
+    "subnetName": "AttackerSubnet",
+    "vnetName": "contosoVnet"
   },
   "resources": [
     {
-      "type": "Microsoft.Network/networkSecurityGroups",
-      "apiVersion": "2020-05-01",
-      "name": "AttackerVNetNSG",
-      "location": "[variables('location')]",
+      "type": "Microsoft.Network/virtualNetworks/subnets",
+      "apiVersion": "2023-04-01",
+      "name": "[format('{0}/{1}', variables('vnetName'), variables('subnetName'))]",
       "properties": {
-        "securityRules": []
+        "addressPrefix": "192.168.5.0/24"
       }
-    },
-    {
-      "type": "Microsoft.Network/virtualNetworks",
-      "apiVersion": "2020-03-01",
-      "name": "AttackerVNet",
-      "location": "[variables('location')]",
-      "properties": {
-        "subnets": [
-          {
-            "name": "AttackerSubnet",
-            "properties": {
-              "addressPrefix": "10.1.0.0/24"
-            }
-          }
-        ],
-        "addressSpace": {
-          "addressPrefixes": [
-            "10.1.0.0/16"
-          ]
-        }
-      }
-    },
-    {
-      "condition": "[contains(variables('USMapping'), variables('location'))]",
-      "type": "Microsoft.Network/virtualNetworks",
-      "apiVersion": "2020-03-01",
-      "name": "BastionVNetUS",
-      "location": "northcentralus",
-      "properties": {
-        "subnets": [
-          {
-            "name": "BastionSubnet",
-            "properties": {
-              "addressPrefix": "10.3.0.0/24"
-            }
-          }
-        ],
-        "addressSpace": {
-          "addressPrefixes": [
-            "10.3.0.0/16"
-          ]
-        }
-      }
-    },
-    {
-      "condition": "[contains(variables('USMapping'), variables('location'))]",
-      "type": "Microsoft.Network/bastionHosts",
-      "apiVersion": "2024-05-01",
-      "name": "[format('{0}US', variables('BastionName'))]",
-      "location": "northcentralus",
-      "sku": {
-        "name": "Developer"
-      },
-      "properties": {
-        "dnsName": "[format('omnibrain.northcentralus.{0}global.azure.com', variables('BastionName'))]",
-        "scaleUnits": 2,
-        "virtualNetwork": {
-          "id": "[resourceId('Microsoft.Network/virtualNetworks', 'BastionVNetUS')]"
-        },
-        "ipConfigurations": []
-      },
-      "dependsOn": [
-        "[resourceId('Microsoft.Network/virtualNetworks', 'BastionVNetUS')]"
-      ]
-    },
-    {
-      "condition": "[contains(variables('EUMapping'), variables('location'))]",
-      "type": "Microsoft.Network/virtualNetworks",
-      "apiVersion": "2020-03-01",
-      "name": "BastionVNetEU",
-      "location": "northeurope",
-      "properties": {
-        "subnets": [
-          {
-            "name": "BastionSubnet",
-            "properties": {
-              "addressPrefix": "10.3.0.0/24"
-            }
-          }
-        ],
-        "addressSpace": {
-          "addressPrefixes": [
-            "10.3.0.0/16"
-          ]
-        }
-      }
-    },
-    {
-      "condition": "[contains(variables('EUMapping'), variables('location'))]",
-      "type": "Microsoft.Network/bastionHosts",
-      "apiVersion": "2024-05-01",
-      "name": "[format('{0}EU', variables('BastionName'))]",
-      "location": "northeurope",
-      "sku": {
-        "name": "Developer"
-      },
-      "properties": {
-        "dnsName": "[format('omnibrain.northeurope.{0}global.azure.com', variables('BastionName'))]",
-        "scaleUnits": 2,
-        "virtualNetwork": {
-          "id": "[resourceId('Microsoft.Network/virtualNetworks', 'BastionVNetEU')]"
-        },
-        "ipConfigurations": []
-      },
-      "dependsOn": [
-        "[resourceId('Microsoft.Network/virtualNetworks', 'BastionVNetEU')]"
-      ]
     },
     {
       "type": "Microsoft.Resources/deployments",
@@ -523,7 +386,7 @@
         }
       },
       "dependsOn": [
-        "[resourceId('Microsoft.Network/virtualNetworks', 'AttackerVNet')]"
+        "[resourceId('Microsoft.Network/virtualNetworks/subnets', variables('vnetName'), variables('subnetName'))]"
       ]
     },
     {
@@ -873,7 +736,7 @@
         }
       },
       "dependsOn": [
-        "[resourceId('Microsoft.Network/virtualNetworks', 'AttackerVNet')]"
+        "[resourceId('Microsoft.Network/virtualNetworks/subnets', variables('vnetName'), variables('subnetName'))]"
       ]
     },
     {
@@ -1222,7 +1085,7 @@
         }
       },
       "dependsOn": [
-        "[resourceId('Microsoft.Network/virtualNetworks', 'AttackerVNet')]"
+        "[resourceId('Microsoft.Network/virtualNetworks/subnets', variables('vnetName'), variables('subnetName'))]"
       ]
     }
   ]

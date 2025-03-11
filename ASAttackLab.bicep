@@ -7,141 +7,25 @@ param vmShutdownTime string = '20:00'
 var adminUsername = 'attacker'
 var adminPassword = '${uniqueString(subscription().subscriptionId)}E#w2e'
 var location = resourceGroup().location
-var BastionName = 'Bastion'
-
-var USMapping  = [
-  'australiaeast'
-  'australiasoutheast'
-  'brazilsouth'
-  'canadacentral'
-  'canadaeast'
-  'centralus'
-  'eastasia'
-  'eastus2'
-  'japanwest'
-  'koreacentral'
-  'westcentralus'
-  'westus'
-]
-
-var EUMapping  = [
-  'centralindia'
-  'francecentral'
-  'germanywestcentral'
-  'israelcentral'
-  'italynorth'
-  'jioindiawest'
-  'northeurope'
-  'norwayeast'
-  'southeastasia'
-  'swedencentral'
-  'uaenorth'
-  'uksouth'
-  'ukwest'
-  'westeurope'
-]
 
 
-resource Create_AttackerVNetNSG 'Microsoft.Network/networkSecurityGroups@2020-05-01' = {
-  name: 'AttackerVNetNSG'
-  location: location
-  properties: {
-    securityRules: []
-  }
+var subnetName = 'AttackerSubnet'
+var vnetName = 'contosoVnet'
+
+resource Create_contosoVnet 'Microsoft.Network/virtualNetworks@2023-04-01' existing = {
+  name: vnetName
 }
 
-resource Create_AttackerVNet 'Microsoft.Network/virtualNetworks@2020-03-01' = {
-  name: 'AttackerVNet'
-  location: location
-  properties: {
-    subnets: [
-      {
-        name: 'AttackerSubnet'
-        properties: {
-          addressPrefix: '10.1.0.0/24'
-        }
-      }
-    ]
-    addressSpace: {
-      addressPrefixes: [
-        '10.1.0.0/16'
-      ]
-    }
+resource Create_AttackerSubnet 'Microsoft.Network/virtualNetworks/subnets@2023-04-01' = {
+
+  name: subnetName
+  parent: Create_contosoVnet
+  properties:{
+    addressPrefix:'192.168.5.0/24' //Address prefix should **not** be overlapping with existing subnets
   }
+
 }
 
-
-resource Create_BastionUSVNet 'Microsoft.Network/virtualNetworks@2020-03-01' = if (contains(USMapping, location)) {
-  name: 'BastionVNetUS'
-  location: 'northcentralus'
-  properties: {
-    subnets: [
-      {
-        name: 'BastionSubnet'
-        properties: {
-          addressPrefix: '10.3.0.0/24'
-        }
-      }
-    ]
-    addressSpace: {
-      addressPrefixes: [
-        '10.3.0.0/16'
-      ]
-    }
-  }
-}
-
-resource bastionUSHost 'Microsoft.Network/bastionHosts@2024-05-01' = if (contains(USMapping, location)) {
-  name: '${BastionName}US'
-  location: 'northcentralus'
-  sku: {
-    name: 'Developer'
-  }
-  properties: {
-    dnsName: 'omnibrain.northcentralus.${BastionName}global.azure.com'
-    scaleUnits: 2
-    virtualNetwork: {
-      id: Create_BastionUSVNet.id
-    }
-    ipConfigurations: []
-  }
-}
-
-resource Create_BastionEUVNet 'Microsoft.Network/virtualNetworks@2020-03-01' = if (contains(EUMapping, location)) {
-  name: 'BastionVNetEU'
-  location: 'northeurope'
-  properties: {
-    subnets: [
-      {
-        name: 'BastionSubnet'
-        properties: {
-          addressPrefix: '10.3.0.0/24'
-        }
-      }
-    ]
-    addressSpace: {
-      addressPrefixes: [
-        '10.3.0.0/16'
-      ]
-    }
-  }
-}
-
-resource bastionEUHost 'Microsoft.Network/bastionHosts@2024-05-01' = if (contains(EUMapping, location)) {
-  name: '${BastionName}EU'
-  location: 'northeurope'
-  sku: {
-    name: 'Developer'
-  }
-  properties: {
-    dnsName: 'omnibrain.northeurope.${BastionName}global.azure.com'
-    scaleUnits: 2
-    virtualNetwork: {
-      id: Create_BastionEUVNet.id
-    }
-    ipConfigurations: []
-  }
-}
 
 
 module Add_AttackerWin10 './createVirtualMachine.bicep' = {
@@ -169,7 +53,7 @@ module Add_AttackerWin10 './createVirtualMachine.bicep' = {
     location: location
   }
     dependsOn: [
-      Create_AttackerVNet
+      Create_AttackerSubnet
   ]
 }
 
@@ -200,9 +84,10 @@ module Add_AttackerKali './createVirtualMachine.bicep' = {
     location: location
   }
     dependsOn: [
-      Create_AttackerVNet
+      Create_AttackerSubnet
   ]
 }
+
 
 module Add_AttackerUbuntu './createVirtualMachine.bicep' = {
   name: 'Add_AttackerUbuntu'
@@ -229,6 +114,6 @@ module Add_AttackerUbuntu './createVirtualMachine.bicep' = {
     location: location
   }
     dependsOn: [
-    Create_AttackerVNet
+      Create_AttackerSubnet
   ]
 }
