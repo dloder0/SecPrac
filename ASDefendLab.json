@@ -35,7 +35,7 @@
     {
       "type": "Microsoft.Network/networkSecurityGroups",
       "apiVersion": "2020-05-01",
-      "name": "contosoVNetNSG",
+      "name": "contosoVnetNSG",
       "location": "[variables('location')]",
       "properties": {
         "securityRules": []
@@ -44,7 +44,7 @@
     {
       "type": "Microsoft.Network/virtualNetworks",
       "apiVersion": "2020-03-01",
-      "name": "contosoVNet",
+      "name": "contosoVnet",
       "location": "[variables('location')]",
       "properties": {
         "dhcpOptions": {
@@ -104,7 +104,7 @@
                 "id": "[resourceId('Microsoft.Network/publicIPAddresses', variables('BastionPublicIPName'))]"
               },
               "subnet": {
-                "id": "[format('{0}/subnets/AzureBastionSubnet', resourceId('Microsoft.Network/virtualNetworks', 'contosoVNet'))]"
+                "id": "[format('{0}/subnets/AzureBastionSubnet', resourceId('Microsoft.Network/virtualNetworks', 'contosoVnet'))]"
               }
             }
           }
@@ -112,7 +112,7 @@
       },
       "dependsOn": [
         "[resourceId('Microsoft.Network/publicIPAddresses', variables('BastionPublicIPName'))]",
-        "[resourceId('Microsoft.Network/virtualNetworks', 'contosoVNet')]"
+        "[resourceId('Microsoft.Network/virtualNetworks', 'contosoVnet')]"
       ]
     },
     {
@@ -461,7 +461,7 @@
         }
       },
       "dependsOn": [
-        "[resourceId('Microsoft.Network/virtualNetworks', 'contosoVNet')]"
+        "[resourceId('Microsoft.Network/virtualNetworks', 'contosoVnet')]"
       ]
     },
     {
@@ -811,7 +811,7 @@
       },
       "dependsOn": [
         "[resourceId('Microsoft.Resources/deployments', 'Add_SVR19_DC1')]",
-        "[resourceId('Microsoft.Network/virtualNetworks', 'contosoVNet')]"
+        "[resourceId('Microsoft.Network/virtualNetworks', 'contosoVnet')]"
       ]
     },
     {
@@ -1161,7 +1161,7 @@
       },
       "dependsOn": [
         "[resourceId('Microsoft.Resources/deployments', 'Add_SVR19_DC1')]",
-        "[resourceId('Microsoft.Network/virtualNetworks', 'contosoVNet')]"
+        "[resourceId('Microsoft.Network/virtualNetworks', 'contosoVnet')]"
       ]
     },
     {
@@ -1510,7 +1510,7 @@
         }
       },
       "dependsOn": [
-        "[resourceId('Microsoft.Network/virtualNetworks', 'contosoVNet')]"
+        "[resourceId('Microsoft.Network/virtualNetworks', 'contosoVnet')]"
       ]
     },
     {
@@ -1860,7 +1860,7 @@
       },
       "dependsOn": [
         "[resourceId('Microsoft.Resources/deployments', 'Add_SVR19_DC1')]",
-        "[resourceId('Microsoft.Network/virtualNetworks', 'contosoVNet')]"
+        "[resourceId('Microsoft.Network/virtualNetworks', 'contosoVnet')]"
       ]
     },
     {
@@ -2210,7 +2210,7 @@
       },
       "dependsOn": [
         "[resourceId('Microsoft.Resources/deployments', 'Add_SVR19_DC1')]",
-        "[resourceId('Microsoft.Network/virtualNetworks', 'contosoVNet')]"
+        "[resourceId('Microsoft.Network/virtualNetworks', 'contosoVnet')]"
       ]
     },
     {
@@ -2560,7 +2560,7 @@
       },
       "dependsOn": [
         "[resourceId('Microsoft.Resources/deployments', 'Add_SVR19_DC1')]",
-        "[resourceId('Microsoft.Network/virtualNetworks', 'contosoVNet')]"
+        "[resourceId('Microsoft.Network/virtualNetworks', 'contosoVnet')]"
       ]
     },
     {
@@ -2909,7 +2909,7 @@
         }
       },
       "dependsOn": [
-        "[resourceId('Microsoft.Network/virtualNetworks', 'contosoVNet')]"
+        "[resourceId('Microsoft.Network/virtualNetworks', 'contosoVnet')]"
       ]
     }
   ]

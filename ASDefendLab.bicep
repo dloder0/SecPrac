@@ -10,16 +10,16 @@ var location = resourceGroup().location
 var BastionName = 'Bastion'
 var BastionPublicIPName = 'Bastion-ip'
 
-resource Create_contosoVNetNSG 'Microsoft.Network/networkSecurityGroups@2020-05-01' = {
-  name: 'contosoVNetNSG'
+resource Create_contosoVnetNSG 'Microsoft.Network/networkSecurityGroups@2020-05-01' = {
+  name: 'contosoVnetNSG'
   location: location
   properties: {
     securityRules: []
   }
 }
 
-resource Create_contosoVNet 'Microsoft.Network/virtualNetworks@2020-03-01' = {
-  name: 'contosoVNet'
+resource Create_contosoVnet 'Microsoft.Network/virtualNetworks@2020-03-01' = {
+  name: 'contosoVnet'
   location: location
   properties: {
     dhcpOptions: {
@@ -78,7 +78,7 @@ resource Bastion 'Microsoft.Network/bastionHosts@2020-11-01' = {
             id: BastionPublicIP.id
           }
           subnet: {
-            id: '${Create_contosoVNet.id}/subnets/AzureBastionSubnet'
+            id: '${Create_contosoVnet.id}/subnets/AzureBastionSubnet'
           }
         }
       }
@@ -112,7 +112,7 @@ module Add_SVR19_DC1 './createVirtualMachine.bicep' = {
     location: location
   }
     dependsOn: [
-      Create_contosoVNet
+      Create_contosoVnet
   ]
 }
 
@@ -141,7 +141,7 @@ module Add_Win10_ADM './createVirtualMachine.bicep' = {
     location: location
   }
     dependsOn: [
-      Create_contosoVNet
+      Create_contosoVnet
       Add_SVR19_DC1
   ]
 }
@@ -171,7 +171,7 @@ module Add_Win10_CEO './createVirtualMachine.bicep' = {
     location: location
   }
     dependsOn: [
-      Create_contosoVNet
+      Create_contosoVnet
       Add_SVR19_DC1
   ]
 }
@@ -201,7 +201,7 @@ module Add_Win11_USR './createVirtualMachine.bicep' = {
     location: location
   }
     dependsOn: [
-      Create_contosoVNet
+      Create_contosoVnet
   ]
 }
 
@@ -230,7 +230,7 @@ module Add_SVR16_ADFS './createVirtualMachine.bicep' = {
     location: location
   }
     dependsOn: [
-      Create_contosoVNet
+      Create_contosoVnet
       Add_SVR19_DC1
   ]
 }
@@ -260,7 +260,7 @@ module Add_SVR19_PKI './createVirtualMachine.bicep' = {
     location: location
   }
     dependsOn: [
-      Create_contosoVNet
+      Create_contosoVnet
       Add_SVR19_DC1
   ]
 }
@@ -290,7 +290,7 @@ module Add_SVR22_SYNC './createVirtualMachine.bicep' = {
     location: location
   }
     dependsOn: [
-      Create_contosoVNet
+      Create_contosoVnet
       Add_SVR19_DC1
   ]
 }
@@ -320,7 +320,7 @@ module Add_Ubuntu_Proxy './createVirtualMachine.bicep' = {
     location: location
   }
     dependsOn: [
-      Create_contosoVNet
+      Create_contosoVnet
   ]
 }
 
