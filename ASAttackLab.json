@@ -5,7 +5,7 @@
     "_generator": {
       "name": "bicep",
       "version": "0.33.93.31351",
-      "templateHash": "16058302800810495247"
+      "templateHash": "3033640071261675815"
     }
   },
   "parameters": {
@@ -54,7 +54,7 @@
             "value": "AttackerWin10"
           },
           "virtualNetworkName": {
-            "value": "AttackerVNet"
+            "value": "contosoVnet"
           },
           "subnetName": {
             "value": "AttackerSubnet"
@@ -403,7 +403,7 @@
             "value": "AttackerKali"
           },
           "virtualNetworkName": {
-            "value": "AttackerVNet"
+            "value": "contosoVnet"
           },
           "subnetName": {
             "value": "AttackerSubnet"
@@ -753,7 +753,7 @@
             "value": "AttackerUbuntu"
           },
           "virtualNetworkName": {
-            "value": "AttackerVNet"
+            "value": "contosoVnet"
           },
           "subnetName": {
             "value": "AttackerSubnet"

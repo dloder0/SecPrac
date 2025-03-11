@@ -30,7 +30,7 @@ module Add_AttackerWin10 './createVirtualMachine.bicep' = {
   name: 'Add_AttackerWin10'
   params: {
     vmName: 'AttackerWin10'
-    virtualNetworkName: 'AttackerVNet'
+    virtualNetworkName: 'contosoVnet'
     subnetName: 'AttackerSubnet'
     vmShutdownTimeTimeZoneId: vmShutdownTimeTimeZoneId
     vmShutdownTime: vmShutdownTime
@@ -60,7 +60,7 @@ module Add_AttackerKali './createVirtualMachine.bicep' = {
   name: 'Add_AttackerKali'
   params: {
     vmName: 'AttackerKali'
-    virtualNetworkName: 'AttackerVNet'
+    virtualNetworkName: 'contosoVnet'
     subnetName: 'AttackerSubnet'
     vmShutdownTimeTimeZoneId: vmShutdownTimeTimeZoneId
     vmIpAddress: '192.168.5.11'
@@ -91,7 +91,7 @@ module Add_AttackerUbuntu './createVirtualMachine.bicep' = {
   name: 'Add_AttackerUbuntu'
   params: {
     vmName: 'AttackerUbuntu'
-    virtualNetworkName: 'AttackerVNet'
+    virtualNetworkName: 'contosoVnet'
     subnetName: 'AttackerSubnet'
     vmShutdownTimeTimeZoneId: vmShutdownTimeTimeZoneId
     vmIpAddress: '192.168.5.12'
