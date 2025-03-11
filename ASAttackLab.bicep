@@ -8,7 +8,6 @@ var adminUsername = 'attacker'
 var adminPassword = '${uniqueString(subscription().subscriptionId)}E#w2e'
 var location = resourceGroup().location
 
-
 var subnetName = 'AttackerSubnet'
 var vnetName = 'contosoVnet'
 
@@ -25,7 +24,6 @@ resource Create_AttackerSubnet 'Microsoft.Network/virtualNetworks/subnets@2023-0
   }
 
 }
-
 
 
 module Add_AttackerWin10 './createVirtualMachine.bicep' = {
