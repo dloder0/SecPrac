@@ -5,7 +5,7 @@
     "_generator": {
       "name": "bicep",
       "version": "0.33.93.31351",
-      "templateHash": "12480834474098109731"
+      "templateHash": "12859645914631428650"
     }
   },
   "parameters": {
@@ -177,7 +177,7 @@
             "_generator": {
               "name": "bicep",
               "version": "0.33.93.31351",
-              "templateHash": "3429140400602823606"
+              "templateHash": "8743654609875850986"
             }
           },
           "parameters": {
@@ -450,7 +450,7 @@
                 "typeHandlerVersion": "1.7",
                 "autoUpgradeMinorVersion": true,
                 "settings": {
-                  "commandToExecute": "powershell.exe -Command \"Set-DnsClientServerAddress 'Ethernet' -ServerAddresses ('168.63.129.16'); Clear-DnsClientCache; if (!(Test-Path -PathType Container -Path c:\\tools\\labsetup)) { New-Item -Path C:\\Tools\\labsetup -ItemType Directory }; Get-DnsClientServerAddress | Out-File c:\\Tools\\labsetup\\setup.log -encoding default; [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; Invoke-WebRequest -UseBasicParsing -Uri https://aka.ms/SecPracASDefendLab -OutFile c:\\tools\\labsetup\\setup.zip; if (Test-Path -PathType Leaf -Path c:\\tools\\labsetup\\setup.zip) { Expand-Archive -Path C:\\Tools\\labsetup\\setup.zip -DestinationPath C:\\Tools\\labsetup -Force; if (Test-Path -PathType Leaf -Path c:\\tools\\labsetup\\invoke-setup.ps1) { & c:\\tools\\labsetup\\invoke-setup.ps1 } } else { exit 1 }\""
+                  "commandToExecute": "powershell.exe -Command \"Set-DnsClientServerAddress 'Ether*' -ServerAddresses ('168.63.129.16'); Clear-DnsClientCache; if (!(Test-Path -PathType Container -Path c:\\tools\\labsetup)) { New-Item -Path C:\\Tools\\labsetup -ItemType Directory }; Get-DnsClientServerAddress | Out-File c:\\Tools\\labsetup\\setup.log -encoding default; [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; Invoke-WebRequest -UseBasicParsing -Uri https://aka.ms/SecPracASDefendLab -OutFile c:\\tools\\labsetup\\setup.zip; if (Test-Path -PathType Leaf -Path c:\\tools\\labsetup\\setup.zip) { Expand-Archive -Path C:\\Tools\\labsetup\\setup.zip -DestinationPath C:\\Tools\\labsetup -Force; if (Test-Path -PathType Leaf -Path c:\\tools\\labsetup\\invoke-setup.ps1) { & c:\\tools\\labsetup\\invoke-setup.ps1 } } else { exit 1 }\""
                 }
               },
               "dependsOn": [
@@ -526,7 +526,7 @@
             "_generator": {
               "name": "bicep",
               "version": "0.33.93.31351",
-              "templateHash": "3429140400602823606"
+              "templateHash": "8743654609875850986"
             }
           },
           "parameters": {
@@ -799,7 +799,7 @@
                 "typeHandlerVersion": "1.7",
                 "autoUpgradeMinorVersion": true,
                 "settings": {
-                  "commandToExecute": "powershell.exe -Command \"Set-DnsClientServerAddress 'Ethernet' -ServerAddresses ('168.63.129.16'); Clear-DnsClientCache; if (!(Test-Path -PathType Container -Path c:\\tools\\labsetup)) { New-Item -Path C:\\Tools\\labsetup -ItemType Directory }; Get-DnsClientServerAddress | Out-File c:\\Tools\\labsetup\\setup.log -encoding default; [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; Invoke-WebRequest -UseBasicParsing -Uri https://aka.ms/SecPracASDefendLab -OutFile c:\\tools\\labsetup\\setup.zip; if (Test-Path -PathType Leaf -Path c:\\tools\\labsetup\\setup.zip) { Expand-Archive -Path C:\\Tools\\labsetup\\setup.zip -DestinationPath C:\\Tools\\labsetup -Force; if (Test-Path -PathType Leaf -Path c:\\tools\\labsetup\\invoke-setup.ps1) { & c:\\tools\\labsetup\\invoke-setup.ps1 } } else { exit 1 }\""
+                  "commandToExecute": "powershell.exe -Command \"Set-DnsClientServerAddress 'Ether*' -ServerAddresses ('168.63.129.16'); Clear-DnsClientCache; if (!(Test-Path -PathType Container -Path c:\\tools\\labsetup)) { New-Item -Path C:\\Tools\\labsetup -ItemType Directory }; Get-DnsClientServerAddress | Out-File c:\\Tools\\labsetup\\setup.log -encoding default; [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; Invoke-WebRequest -UseBasicParsing -Uri https://aka.ms/SecPracASDefendLab -OutFile c:\\tools\\labsetup\\setup.zip; if (Test-Path -PathType Leaf -Path c:\\tools\\labsetup\\setup.zip) { Expand-Archive -Path C:\\Tools\\labsetup\\setup.zip -DestinationPath C:\\Tools\\labsetup -Force; if (Test-Path -PathType Leaf -Path c:\\tools\\labsetup\\invoke-setup.ps1) { & c:\\tools\\labsetup\\invoke-setup.ps1 } } else { exit 1 }\""
                 }
               },
               "dependsOn": [
@@ -876,7 +876,7 @@
             "_generator": {
               "name": "bicep",
               "version": "0.33.93.31351",
-              "templateHash": "3429140400602823606"
+              "templateHash": "8743654609875850986"
             }
           },
           "parameters": {
@@ -1149,7 +1149,7 @@
                 "typeHandlerVersion": "1.7",
                 "autoUpgradeMinorVersion": true,
                 "settings": {
-                  "commandToExecute": "powershell.exe -Command \"Set-DnsClientServerAddress 'Ethernet' -ServerAddresses ('168.63.129.16'); Clear-DnsClientCache; if (!(Test-Path -PathType Container -Path c:\\tools\\labsetup)) { New-Item -Path C:\\Tools\\labsetup -ItemType Directory }; Get-DnsClientServerAddress | Out-File c:\\Tools\\labsetup\\setup.log -encoding default; [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; Invoke-WebRequest -UseBasicParsing -Uri https://aka.ms/SecPracASDefendLab -OutFile c:\\tools\\labsetup\\setup.zip; if (Test-Path -PathType Leaf -Path c:\\tools\\labsetup\\setup.zip) { Expand-Archive -Path C:\\Tools\\labsetup\\setup.zip -DestinationPath C:\\Tools\\labsetup -Force; if (Test-Path -PathType Leaf -Path c:\\tools\\labsetup\\invoke-setup.ps1) { & c:\\tools\\labsetup\\invoke-setup.ps1 } } else { exit 1 }\""
+                  "commandToExecute": "powershell.exe -Command \"Set-DnsClientServerAddress 'Ether*' -ServerAddresses ('168.63.129.16'); Clear-DnsClientCache; if (!(Test-Path -PathType Container -Path c:\\tools\\labsetup)) { New-Item -Path C:\\Tools\\labsetup -ItemType Directory }; Get-DnsClientServerAddress | Out-File c:\\Tools\\labsetup\\setup.log -encoding default; [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; Invoke-WebRequest -UseBasicParsing -Uri https://aka.ms/SecPracASDefendLab -OutFile c:\\tools\\labsetup\\setup.zip; if (Test-Path -PathType Leaf -Path c:\\tools\\labsetup\\setup.zip) { Expand-Archive -Path C:\\Tools\\labsetup\\setup.zip -DestinationPath C:\\Tools\\labsetup -Force; if (Test-Path -PathType Leaf -Path c:\\tools\\labsetup\\invoke-setup.ps1) { & c:\\tools\\labsetup\\invoke-setup.ps1 } } else { exit 1 }\""
                 }
               },
               "dependsOn": [
@@ -1226,7 +1226,7 @@
             "_generator": {
               "name": "bicep",
               "version": "0.33.93.31351",
-              "templateHash": "3429140400602823606"
+              "templateHash": "8743654609875850986"
             }
           },
           "parameters": {
@@ -1499,7 +1499,7 @@
                 "typeHandlerVersion": "1.7",
                 "autoUpgradeMinorVersion": true,
                 "settings": {
-                  "commandToExecute": "powershell.exe -Command \"Set-DnsClientServerAddress 'Ethernet' -ServerAddresses ('168.63.129.16'); Clear-DnsClientCache; if (!(Test-Path -PathType Container -Path c:\\tools\\labsetup)) { New-Item -Path C:\\Tools\\labsetup -ItemType Directory }; Get-DnsClientServerAddress | Out-File c:\\Tools\\labsetup\\setup.log -encoding default; [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; Invoke-WebRequest -UseBasicParsing -Uri https://aka.ms/SecPracASDefendLab -OutFile c:\\tools\\labsetup\\setup.zip; if (Test-Path -PathType Leaf -Path c:\\tools\\labsetup\\setup.zip) { Expand-Archive -Path C:\\Tools\\labsetup\\setup.zip -DestinationPath C:\\Tools\\labsetup -Force; if (Test-Path -PathType Leaf -Path c:\\tools\\labsetup\\invoke-setup.ps1) { & c:\\tools\\labsetup\\invoke-setup.ps1 } } else { exit 1 }\""
+                  "commandToExecute": "powershell.exe -Command \"Set-DnsClientServerAddress 'Ether*' -ServerAddresses ('168.63.129.16'); Clear-DnsClientCache; if (!(Test-Path -PathType Container -Path c:\\tools\\labsetup)) { New-Item -Path C:\\Tools\\labsetup -ItemType Directory }; Get-DnsClientServerAddress | Out-File c:\\Tools\\labsetup\\setup.log -encoding default; [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; Invoke-WebRequest -UseBasicParsing -Uri https://aka.ms/SecPracASDefendLab -OutFile c:\\tools\\labsetup\\setup.zip; if (Test-Path -PathType Leaf -Path c:\\tools\\labsetup\\setup.zip) { Expand-Archive -Path C:\\Tools\\labsetup\\setup.zip -DestinationPath C:\\Tools\\labsetup -Force; if (Test-Path -PathType Leaf -Path c:\\tools\\labsetup\\invoke-setup.ps1) { & c:\\tools\\labsetup\\invoke-setup.ps1 } } else { exit 1 }\""
                 }
               },
               "dependsOn": [
@@ -1575,7 +1575,7 @@
             "_generator": {
               "name": "bicep",
               "version": "0.33.93.31351",
-              "templateHash": "3429140400602823606"
+              "templateHash": "8743654609875850986"
             }
           },
           "parameters": {
@@ -1848,7 +1848,7 @@
                 "typeHandlerVersion": "1.7",
                 "autoUpgradeMinorVersion": true,
                 "settings": {
-                  "commandToExecute": "powershell.exe -Command \"Set-DnsClientServerAddress 'Ethernet' -ServerAddresses ('168.63.129.16'); Clear-DnsClientCache; if (!(Test-Path -PathType Container -Path c:\\tools\\labsetup)) { New-Item -Path C:\\Tools\\labsetup -ItemType Directory }; Get-DnsClientServerAddress | Out-File c:\\Tools\\labsetup\\setup.log -encoding default; [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; Invoke-WebRequest -UseBasicParsing -Uri https://aka.ms/SecPracASDefendLab -OutFile c:\\tools\\labsetup\\setup.zip; if (Test-Path -PathType Leaf -Path c:\\tools\\labsetup\\setup.zip) { Expand-Archive -Path C:\\Tools\\labsetup\\setup.zip -DestinationPath C:\\Tools\\labsetup -Force; if (Test-Path -PathType Leaf -Path c:\\tools\\labsetup\\invoke-setup.ps1) { & c:\\tools\\labsetup\\invoke-setup.ps1 } } else { exit 1 }\""
+                  "commandToExecute": "powershell.exe -Command \"Set-DnsClientServerAddress 'Ether*' -ServerAddresses ('168.63.129.16'); Clear-DnsClientCache; if (!(Test-Path -PathType Container -Path c:\\tools\\labsetup)) { New-Item -Path C:\\Tools\\labsetup -ItemType Directory }; Get-DnsClientServerAddress | Out-File c:\\Tools\\labsetup\\setup.log -encoding default; [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; Invoke-WebRequest -UseBasicParsing -Uri https://aka.ms/SecPracASDefendLab -OutFile c:\\tools\\labsetup\\setup.zip; if (Test-Path -PathType Leaf -Path c:\\tools\\labsetup\\setup.zip) { Expand-Archive -Path C:\\Tools\\labsetup\\setup.zip -DestinationPath C:\\Tools\\labsetup -Force; if (Test-Path -PathType Leaf -Path c:\\tools\\labsetup\\invoke-setup.ps1) { & c:\\tools\\labsetup\\invoke-setup.ps1 } } else { exit 1 }\""
                 }
               },
               "dependsOn": [
@@ -1925,7 +1925,7 @@
             "_generator": {
               "name": "bicep",
               "version": "0.33.93.31351",
-              "templateHash": "3429140400602823606"
+              "templateHash": "8743654609875850986"
             }
           },
           "parameters": {
@@ -2198,7 +2198,7 @@
                 "typeHandlerVersion": "1.7",
                 "autoUpgradeMinorVersion": true,
                 "settings": {
-                  "commandToExecute": "powershell.exe -Command \"Set-DnsClientServerAddress 'Ethernet' -ServerAddresses ('168.63.129.16'); Clear-DnsClientCache; if (!(Test-Path -PathType Container -Path c:\\tools\\labsetup)) { New-Item -Path C:\\Tools\\labsetup -ItemType Directory }; Get-DnsClientServerAddress | Out-File c:\\Tools\\labsetup\\setup.log -encoding default; [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; Invoke-WebRequest -UseBasicParsing -Uri https://aka.ms/SecPracASDefendLab -OutFile c:\\tools\\labsetup\\setup.zip; if (Test-Path -PathType Leaf -Path c:\\tools\\labsetup\\setup.zip) { Expand-Archive -Path C:\\Tools\\labsetup\\setup.zip -DestinationPath C:\\Tools\\labsetup -Force; if (Test-Path -PathType Leaf -Path c:\\tools\\labsetup\\invoke-setup.ps1) { & c:\\tools\\labsetup\\invoke-setup.ps1 } } else { exit 1 }\""
+                  "commandToExecute": "powershell.exe -Command \"Set-DnsClientServerAddress 'Ether*' -ServerAddresses ('168.63.129.16'); Clear-DnsClientCache; if (!(Test-Path -PathType Container -Path c:\\tools\\labsetup)) { New-Item -Path C:\\Tools\\labsetup -ItemType Directory }; Get-DnsClientServerAddress | Out-File c:\\Tools\\labsetup\\setup.log -encoding default; [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; Invoke-WebRequest -UseBasicParsing -Uri https://aka.ms/SecPracASDefendLab -OutFile c:\\tools\\labsetup\\setup.zip; if (Test-Path -PathType Leaf -Path c:\\tools\\labsetup\\setup.zip) { Expand-Archive -Path C:\\Tools\\labsetup\\setup.zip -DestinationPath C:\\Tools\\labsetup -Force; if (Test-Path -PathType Leaf -Path c:\\tools\\labsetup\\invoke-setup.ps1) { & c:\\tools\\labsetup\\invoke-setup.ps1 } } else { exit 1 }\""
                 }
               },
               "dependsOn": [
@@ -2275,7 +2275,7 @@
             "_generator": {
               "name": "bicep",
               "version": "0.33.93.31351",
-              "templateHash": "3429140400602823606"
+              "templateHash": "8743654609875850986"
             }
           },
           "parameters": {
@@ -2548,7 +2548,7 @@
                 "typeHandlerVersion": "1.7",
                 "autoUpgradeMinorVersion": true,
                 "settings": {
-                  "commandToExecute": "powershell.exe -Command \"Set-DnsClientServerAddress 'Ethernet' -ServerAddresses ('168.63.129.16'); Clear-DnsClientCache; if (!(Test-Path -PathType Container -Path c:\\tools\\labsetup)) { New-Item -Path C:\\Tools\\labsetup -ItemType Directory }; Get-DnsClientServerAddress | Out-File c:\\Tools\\labsetup\\setup.log -encoding default; [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; Invoke-WebRequest -UseBasicParsing -Uri https://aka.ms/SecPracASDefendLab -OutFile c:\\tools\\labsetup\\setup.zip; if (Test-Path -PathType Leaf -Path c:\\tools\\labsetup\\setup.zip) { Expand-Archive -Path C:\\Tools\\labsetup\\setup.zip -DestinationPath C:\\Tools\\labsetup -Force; if (Test-Path -PathType Leaf -Path c:\\tools\\labsetup\\invoke-setup.ps1) { & c:\\tools\\labsetup\\invoke-setup.ps1 } } else { exit 1 }\""
+                  "commandToExecute": "powershell.exe -Command \"Set-DnsClientServerAddress 'Ether*' -ServerAddresses ('168.63.129.16'); Clear-DnsClientCache; if (!(Test-Path -PathType Container -Path c:\\tools\\labsetup)) { New-Item -Path C:\\Tools\\labsetup -ItemType Directory }; Get-DnsClientServerAddress | Out-File c:\\Tools\\labsetup\\setup.log -encoding default; [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; Invoke-WebRequest -UseBasicParsing -Uri https://aka.ms/SecPracASDefendLab -OutFile c:\\tools\\labsetup\\setup.zip; if (Test-Path -PathType Leaf -Path c:\\tools\\labsetup\\setup.zip) { Expand-Archive -Path C:\\Tools\\labsetup\\setup.zip -DestinationPath C:\\Tools\\labsetup -Force; if (Test-Path -PathType Leaf -Path c:\\tools\\labsetup\\invoke-setup.ps1) { & c:\\tools\\labsetup\\invoke-setup.ps1 } } else { exit 1 }\""
                 }
               },
               "dependsOn": [
@@ -2625,7 +2625,7 @@
             "_generator": {
               "name": "bicep",
               "version": "0.33.93.31351",
-              "templateHash": "3429140400602823606"
+              "templateHash": "8743654609875850986"
             }
           },
           "parameters": {
@@ -2898,7 +2898,7 @@
                 "typeHandlerVersion": "1.7",
                 "autoUpgradeMinorVersion": true,
                 "settings": {
-                  "commandToExecute": "powershell.exe -Command \"Set-DnsClientServerAddress 'Ethernet' -ServerAddresses ('168.63.129.16'); Clear-DnsClientCache; if (!(Test-Path -PathType Container -Path c:\\tools\\labsetup)) { New-Item -Path C:\\Tools\\labsetup -ItemType Directory }; Get-DnsClientServerAddress | Out-File c:\\Tools\\labsetup\\setup.log -encoding default; [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; Invoke-WebRequest -UseBasicParsing -Uri https://aka.ms/SecPracASDefendLab -OutFile c:\\tools\\labsetup\\setup.zip; if (Test-Path -PathType Leaf -Path c:\\tools\\labsetup\\setup.zip) { Expand-Archive -Path C:\\Tools\\labsetup\\setup.zip -DestinationPath C:\\Tools\\labsetup -Force; if (Test-Path -PathType Leaf -Path c:\\tools\\labsetup\\invoke-setup.ps1) { & c:\\tools\\labsetup\\invoke-setup.ps1 } } else { exit 1 }\""
+                  "commandToExecute": "powershell.exe -Command \"Set-DnsClientServerAddress 'Ether*' -ServerAddresses ('168.63.129.16'); Clear-DnsClientCache; if (!(Test-Path -PathType Container -Path c:\\tools\\labsetup)) { New-Item -Path C:\\Tools\\labsetup -ItemType Directory }; Get-DnsClientServerAddress | Out-File c:\\Tools\\labsetup\\setup.log -encoding default; [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; Invoke-WebRequest -UseBasicParsing -Uri https://aka.ms/SecPracASDefendLab -OutFile c:\\tools\\labsetup\\setup.zip; if (Test-Path -PathType Leaf -Path c:\\tools\\labsetup\\setup.zip) { Expand-Archive -Path C:\\Tools\\labsetup\\setup.zip -DestinationPath C:\\Tools\\labsetup -Force; if (Test-Path -PathType Leaf -Path c:\\tools\\labsetup\\invoke-setup.ps1) { & c:\\tools\\labsetup\\invoke-setup.ps1 } } else { exit 1 }\""
                 }
               },
               "dependsOn": [
