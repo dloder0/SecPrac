@@ -11,7 +11,7 @@ var location = resourceGroup().location
 var subnetName = 'AttackerSubnet'
 var vnetName = 'AttackerVnet'
 
-resource Create_AttackerVnet 'Microsoft.Network/virtualNetworks@2023-04-01' existing = {
+resource Create_contosoVnet 'Microsoft.Network/virtualNetworks@2023-04-01' existing = {
   name: vnetName
 }
 
@@ -27,7 +27,7 @@ resource Create_AttackerVnetNSG 'Microsoft.Network/networkSecurityGroups@2020-05
 resource Create_AttackerSubnet 'Microsoft.Network/virtualNetworks/subnets@2023-04-01' = {
 
   name: subnetName
-  parent: Create_AttackerVnet
+  parent: Create_contosoVnet
   properties:{
     addressPrefix:'192.168.5.0/24' //Address prefix should **not** be overlapping with existing subnets
   }
