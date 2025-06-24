@@ -9,16 +9,25 @@ var adminPassword = '${uniqueString(subscription().subscriptionId)}E#w2e'
 var location = resourceGroup().location
 
 var subnetName = 'AttackerSubnet'
-var vnetName = 'contosoVnet'
+var vnetName = 'AttackerVnet'
 
-resource Create_contosoVnet 'Microsoft.Network/virtualNetworks@2023-04-01' existing = {
+resource Create_AttackerVnet 'Microsoft.Network/virtualNetworks@2023-04-01' existing = {
   name: vnetName
 }
+
+resource Create_AttackerVnetNSG 'Microsoft.Network/networkSecurityGroups@2020-05-01' = {
+  name: 'AttackerVnetNSG'
+  location: location
+  properties: {
+    securityRules: []
+  }
+}
+
 
 resource Create_AttackerSubnet 'Microsoft.Network/virtualNetworks/subnets@2023-04-01' = {
 
   name: subnetName
-  parent: Create_contosoVnet
+  parent: Create_AttackerVnet
   properties:{
     addressPrefix:'192.168.5.0/24' //Address prefix should **not** be overlapping with existing subnets
   }
@@ -30,8 +39,9 @@ module Add_AttackerWin10 './createVirtualMachine.bicep' = {
   name: 'Add_AttackerWin10'
   params: {
     vmName: 'AttackerWin10'
-    virtualNetworkName: 'contosoVnet'
+    virtualNetworkName: 'AttackerVnet'
     subnetName: 'AttackerSubnet'
+    NSGName: 'AttackerVnetNSG'
     vmShutdownTimeTimeZoneId: vmShutdownTimeTimeZoneId
     vmShutdownTime: vmShutdownTime
     vmIpAddress: '192.168.5.10'
@@ -60,8 +70,9 @@ module Add_AttackerKali './createVirtualMachine.bicep' = {
   name: 'Add_AttackerKali'
   params: {
     vmName: 'AttackerKali'
-    virtualNetworkName: 'contosoVnet'
+    virtualNetworkName: 'AttackerVnet'
     subnetName: 'AttackerSubnet'
+    NSGName: 'AttackerVnetNSG'
     vmShutdownTimeTimeZoneId: vmShutdownTimeTimeZoneId
     vmIpAddress: '192.168.5.11'
     adminUsername: adminUsername
@@ -71,10 +82,10 @@ module Add_AttackerKali './createVirtualMachine.bicep' = {
       Offer: 'kali'
       version: 'latest'
       Publisher: 'kali-linux'
-      Sku: 'kali-2024-3'
+      Sku: 'kali-2024-4'
     }
     imagePlan: {
-      name: 'kali-2024-3'
+      name: 'kali-2024-4'
       publisher: 'kali-linux'
       product: 'kali'
     }
@@ -91,8 +102,9 @@ module Add_AttackerUbuntu './createVirtualMachine.bicep' = {
   name: 'Add_AttackerUbuntu'
   params: {
     vmName: 'AttackerUbuntu'
-    virtualNetworkName: 'contosoVnet'
+    virtualNetworkName: 'AttackerVnet'
     subnetName: 'AttackerSubnet'
+    NSGName: 'AttackerVnetNSG'
     vmShutdownTimeTimeZoneId: vmShutdownTimeTimeZoneId
     vmIpAddress: '192.168.5.12'
     adminUsername: adminUsername

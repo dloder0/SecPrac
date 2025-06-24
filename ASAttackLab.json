@@ -4,8 +4,8 @@
   "metadata": {
     "_generator": {
       "name": "bicep",
-      "version": "0.33.93.31351",
-      "templateHash": "3033640071261675815"
+      "version": "0.36.1.42791",
+      "templateHash": "3716861841056098573"
     }
   },
   "parameters": {
@@ -29,9 +29,18 @@
     "adminPassword": "[format('{0}E#w2e', uniqueString(subscription().subscriptionId))]",
     "location": "[resourceGroup().location]",
     "subnetName": "AttackerSubnet",
-    "vnetName": "contosoVnet"
+    "vnetName": "AttackerVnet"
   },
   "resources": [
+    {
+      "type": "Microsoft.Network/networkSecurityGroups",
+      "apiVersion": "2020-05-01",
+      "name": "AttackerVnetNSG",
+      "location": "[variables('location')]",
+      "properties": {
+        "securityRules": []
+      }
+    },
     {
       "type": "Microsoft.Network/virtualNetworks/subnets",
       "apiVersion": "2023-04-01",
@@ -54,10 +63,13 @@
             "value": "AttackerWin10"
           },
           "virtualNetworkName": {
-            "value": "contosoVnet"
+            "value": "AttackerVnet"
           },
           "subnetName": {
             "value": "AttackerSubnet"
+          },
+          "NSGName": {
+            "value": "AttackerVnetNSG"
           },
           "vmShutdownTimeTimeZoneId": {
             "value": "[parameters('vmShutdownTimeTimeZoneId')]"
@@ -101,8 +113,8 @@
           "metadata": {
             "_generator": {
               "name": "bicep",
-              "version": "0.33.93.31351",
-              "templateHash": "3429140400602823606"
+              "version": "0.36.1.42791",
+              "templateHash": "10902521757577575250"
             }
           },
           "parameters": {
@@ -119,6 +131,12 @@
               "type": "string",
               "metadata": {
                 "description": "The name of the existing subnet in the VNET"
+              }
+            },
+            "NSGName": {
+              "type": "string",
+              "metadata": {
+                "description": "The name of the existing NSG"
               }
             },
             "adAvailabilitySetName": {
@@ -266,7 +284,10 @@
                       "publicIPAddress": "[if(parameters('addPublicIp'), createObject('id', resourceId('Microsoft.Network/publicIPAddresses', variables('vmPublicIPName'))), null())]"
                     }
                   }
-                ]
+                ],
+                "networkSecurityGroup": {
+                  "id": "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('NSGName'))]"
+                }
               },
               "dependsOn": [
                 "[resourceId('Microsoft.Network/publicIPAddresses', variables('vmPublicIPName'))]"
@@ -375,7 +396,7 @@
                 "typeHandlerVersion": "1.7",
                 "autoUpgradeMinorVersion": true,
                 "settings": {
-                  "commandToExecute": "powershell.exe -Command \"Set-DnsClientServerAddress 'Ethernet' -ServerAddresses ('168.63.129.16'); Clear-DnsClientCache; if (!(Test-Path -PathType Container -Path c:\\tools\\labsetup)) { New-Item -Path C:\\Tools\\labsetup -ItemType Directory }; Get-DnsClientServerAddress | Out-File c:\\Tools\\labsetup\\setup.log -encoding default; [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; Invoke-WebRequest -UseBasicParsing -Uri https://aka.ms/SecPracASDefendLab -OutFile c:\\tools\\labsetup\\setup.zip; if (Test-Path -PathType Leaf -Path c:\\tools\\labsetup\\setup.zip) { Expand-Archive -Path C:\\Tools\\labsetup\\setup.zip -DestinationPath C:\\Tools\\labsetup -Force; if (Test-Path -PathType Leaf -Path c:\\tools\\labsetup\\invoke-setup.ps1) { & c:\\tools\\labsetup\\invoke-setup.ps1 } } else { exit 1 }\""
+                  "commandToExecute": "powershell.exe -Command \"Set-DnsClientServerAddress 'Ether*' -ServerAddresses ('168.63.129.16'); Clear-DnsClientCache; if (!(Test-Path -PathType Container -Path c:\\tools\\labsetup)) { New-Item -Path C:\\Tools\\labsetup -ItemType Directory }; Get-DnsClientServerAddress | Out-File c:\\Tools\\labsetup\\setup.log -encoding default; [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; Invoke-WebRequest -UseBasicParsing -Uri https://aka.ms/SecPracASDefendLab -OutFile c:\\tools\\labsetup\\setup.zip; if (Test-Path -PathType Leaf -Path c:\\tools\\labsetup\\setup.zip) { Expand-Archive -Path C:\\Tools\\labsetup\\setup.zip -DestinationPath C:\\Tools\\labsetup -Force; if (Test-Path -PathType Leaf -Path c:\\tools\\labsetup\\invoke-setup.ps1) { & c:\\tools\\labsetup\\invoke-setup.ps1 } } else { exit 1 }\""
                 }
               },
               "dependsOn": [
@@ -403,10 +424,13 @@
             "value": "AttackerKali"
           },
           "virtualNetworkName": {
-            "value": "contosoVnet"
+            "value": "AttackerVnet"
           },
           "subnetName": {
             "value": "AttackerSubnet"
+          },
+          "NSGName": {
+            "value": "AttackerVnetNSG"
           },
           "vmShutdownTimeTimeZoneId": {
             "value": "[parameters('vmShutdownTimeTimeZoneId')]"
@@ -428,12 +452,12 @@
               "Offer": "kali",
               "version": "latest",
               "Publisher": "kali-linux",
-              "Sku": "kali-2024-3"
+              "Sku": "kali-2024-4"
             }
           },
           "imagePlan": {
             "value": {
-              "name": "kali-2024-3",
+              "name": "kali-2024-4",
               "publisher": "kali-linux",
               "product": "kali"
             }
@@ -451,8 +475,8 @@
           "metadata": {
             "_generator": {
               "name": "bicep",
-              "version": "0.33.93.31351",
-              "templateHash": "3429140400602823606"
+              "version": "0.36.1.42791",
+              "templateHash": "10902521757577575250"
             }
           },
           "parameters": {
@@ -469,6 +493,12 @@
               "type": "string",
               "metadata": {
                 "description": "The name of the existing subnet in the VNET"
+              }
+            },
+            "NSGName": {
+              "type": "string",
+              "metadata": {
+                "description": "The name of the existing NSG"
               }
             },
             "adAvailabilitySetName": {
@@ -616,7 +646,10 @@
                       "publicIPAddress": "[if(parameters('addPublicIp'), createObject('id', resourceId('Microsoft.Network/publicIPAddresses', variables('vmPublicIPName'))), null())]"
                     }
                   }
-                ]
+                ],
+                "networkSecurityGroup": {
+                  "id": "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('NSGName'))]"
+                }
               },
               "dependsOn": [
                 "[resourceId('Microsoft.Network/publicIPAddresses', variables('vmPublicIPName'))]"
@@ -725,7 +758,7 @@
                 "typeHandlerVersion": "1.7",
                 "autoUpgradeMinorVersion": true,
                 "settings": {
-                  "commandToExecute": "powershell.exe -Command \"Set-DnsClientServerAddress 'Ethernet' -ServerAddresses ('168.63.129.16'); Clear-DnsClientCache; if (!(Test-Path -PathType Container -Path c:\\tools\\labsetup)) { New-Item -Path C:\\Tools\\labsetup -ItemType Directory }; Get-DnsClientServerAddress | Out-File c:\\Tools\\labsetup\\setup.log -encoding default; [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; Invoke-WebRequest -UseBasicParsing -Uri https://aka.ms/SecPracASDefendLab -OutFile c:\\tools\\labsetup\\setup.zip; if (Test-Path -PathType Leaf -Path c:\\tools\\labsetup\\setup.zip) { Expand-Archive -Path C:\\Tools\\labsetup\\setup.zip -DestinationPath C:\\Tools\\labsetup -Force; if (Test-Path -PathType Leaf -Path c:\\tools\\labsetup\\invoke-setup.ps1) { & c:\\tools\\labsetup\\invoke-setup.ps1 } } else { exit 1 }\""
+                  "commandToExecute": "powershell.exe -Command \"Set-DnsClientServerAddress 'Ether*' -ServerAddresses ('168.63.129.16'); Clear-DnsClientCache; if (!(Test-Path -PathType Container -Path c:\\tools\\labsetup)) { New-Item -Path C:\\Tools\\labsetup -ItemType Directory }; Get-DnsClientServerAddress | Out-File c:\\Tools\\labsetup\\setup.log -encoding default; [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; Invoke-WebRequest -UseBasicParsing -Uri https://aka.ms/SecPracASDefendLab -OutFile c:\\tools\\labsetup\\setup.zip; if (Test-Path -PathType Leaf -Path c:\\tools\\labsetup\\setup.zip) { Expand-Archive -Path C:\\Tools\\labsetup\\setup.zip -DestinationPath C:\\Tools\\labsetup -Force; if (Test-Path -PathType Leaf -Path c:\\tools\\labsetup\\invoke-setup.ps1) { & c:\\tools\\labsetup\\invoke-setup.ps1 } } else { exit 1 }\""
                 }
               },
               "dependsOn": [
@@ -753,10 +786,13 @@
             "value": "AttackerUbuntu"
           },
           "virtualNetworkName": {
-            "value": "contosoVnet"
+            "value": "AttackerVnet"
           },
           "subnetName": {
             "value": "AttackerSubnet"
+          },
+          "NSGName": {
+            "value": "AttackerVnetNSG"
           },
           "vmShutdownTimeTimeZoneId": {
             "value": "[parameters('vmShutdownTimeTimeZoneId')]"
@@ -800,8 +836,8 @@
           "metadata": {
             "_generator": {
               "name": "bicep",
-              "version": "0.33.93.31351",
-              "templateHash": "3429140400602823606"
+              "version": "0.36.1.42791",
+              "templateHash": "10902521757577575250"
             }
           },
           "parameters": {
@@ -818,6 +854,12 @@
               "type": "string",
               "metadata": {
                 "description": "The name of the existing subnet in the VNET"
+              }
+            },
+            "NSGName": {
+              "type": "string",
+              "metadata": {
+                "description": "The name of the existing NSG"
               }
             },
             "adAvailabilitySetName": {
@@ -965,7 +1007,10 @@
                       "publicIPAddress": "[if(parameters('addPublicIp'), createObject('id', resourceId('Microsoft.Network/publicIPAddresses', variables('vmPublicIPName'))), null())]"
                     }
                   }
-                ]
+                ],
+                "networkSecurityGroup": {
+                  "id": "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('NSGName'))]"
+                }
               },
               "dependsOn": [
                 "[resourceId('Microsoft.Network/publicIPAddresses', variables('vmPublicIPName'))]"
@@ -1074,7 +1119,7 @@
                 "typeHandlerVersion": "1.7",
                 "autoUpgradeMinorVersion": true,
                 "settings": {
-                  "commandToExecute": "powershell.exe -Command \"Set-DnsClientServerAddress 'Ethernet' -ServerAddresses ('168.63.129.16'); Clear-DnsClientCache; if (!(Test-Path -PathType Container -Path c:\\tools\\labsetup)) { New-Item -Path C:\\Tools\\labsetup -ItemType Directory }; Get-DnsClientServerAddress | Out-File c:\\Tools\\labsetup\\setup.log -encoding default; [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; Invoke-WebRequest -UseBasicParsing -Uri https://aka.ms/SecPracASDefendLab -OutFile c:\\tools\\labsetup\\setup.zip; if (Test-Path -PathType Leaf -Path c:\\tools\\labsetup\\setup.zip) { Expand-Archive -Path C:\\Tools\\labsetup\\setup.zip -DestinationPath C:\\Tools\\labsetup -Force; if (Test-Path -PathType Leaf -Path c:\\tools\\labsetup\\invoke-setup.ps1) { & c:\\tools\\labsetup\\invoke-setup.ps1 } } else { exit 1 }\""
+                  "commandToExecute": "powershell.exe -Command \"Set-DnsClientServerAddress 'Ether*' -ServerAddresses ('168.63.129.16'); Clear-DnsClientCache; if (!(Test-Path -PathType Container -Path c:\\tools\\labsetup)) { New-Item -Path C:\\Tools\\labsetup -ItemType Directory }; Get-DnsClientServerAddress | Out-File c:\\Tools\\labsetup\\setup.log -encoding default; [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; Invoke-WebRequest -UseBasicParsing -Uri https://aka.ms/SecPracASDefendLab -OutFile c:\\tools\\labsetup\\setup.zip; if (Test-Path -PathType Leaf -Path c:\\tools\\labsetup\\setup.zip) { Expand-Archive -Path C:\\Tools\\labsetup\\setup.zip -DestinationPath C:\\Tools\\labsetup -Force; if (Test-Path -PathType Leaf -Path c:\\tools\\labsetup\\invoke-setup.ps1) { & c:\\tools\\labsetup\\invoke-setup.ps1 } } else { exit 1 }\""
                 }
               },
               "dependsOn": [
