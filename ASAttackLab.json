@@ -5,7 +5,7 @@
     "_generator": {
       "name": "bicep",
       "version": "0.36.1.42791",
-      "templateHash": "3716861841056098573"
+      "templateHash": "13652586188280496900"
     }
   },
   "parameters": {
@@ -29,18 +29,9 @@
     "adminPassword": "[format('{0}E#w2e', uniqueString(subscription().subscriptionId))]",
     "location": "[resourceGroup().location]",
     "subnetName": "AttackerSubnet",
-    "vnetName": "AttackerVnet"
+    "vnetName": "contosoVnet"
   },
   "resources": [
-    {
-      "type": "Microsoft.Network/networkSecurityGroups",
-      "apiVersion": "2020-05-01",
-      "name": "AttackerVnetNSG",
-      "location": "[variables('location')]",
-      "properties": {
-        "securityRules": []
-      }
-    },
     {
       "type": "Microsoft.Network/virtualNetworks/subnets",
       "apiVersion": "2023-04-01",
@@ -63,13 +54,13 @@
             "value": "AttackerWin10"
           },
           "virtualNetworkName": {
-            "value": "AttackerVnet"
+            "value": "contosoVnet"
           },
           "subnetName": {
             "value": "AttackerSubnet"
           },
           "NSGName": {
-            "value": "AttackerVnetNSG"
+            "value": "contosoVnetNSG"
           },
           "vmShutdownTimeTimeZoneId": {
             "value": "[parameters('vmShutdownTimeTimeZoneId')]"
@@ -424,13 +415,13 @@
             "value": "AttackerKali"
           },
           "virtualNetworkName": {
-            "value": "AttackerVnet"
+            "value": "contosoVnet"
           },
           "subnetName": {
             "value": "AttackerSubnet"
           },
           "NSGName": {
-            "value": "AttackerVnetNSG"
+            "value": "contosoVnetNSG"
           },
           "vmShutdownTimeTimeZoneId": {
             "value": "[parameters('vmShutdownTimeTimeZoneId')]"
@@ -452,12 +443,12 @@
               "Offer": "kali",
               "version": "latest",
               "Publisher": "kali-linux",
-              "Sku": "kali-2024-4"
+              "Sku": "kali-2024-3"
             }
           },
           "imagePlan": {
             "value": {
-              "name": "kali-2024-4",
+              "name": "kali-2024-3",
               "publisher": "kali-linux",
               "product": "kali"
             }
@@ -786,13 +777,13 @@
             "value": "AttackerUbuntu"
           },
           "virtualNetworkName": {
-            "value": "AttackerVnet"
+            "value": "contosoVnet"
           },
           "subnetName": {
             "value": "AttackerSubnet"
           },
           "NSGName": {
-            "value": "AttackerVnetNSG"
+            "value": "contosoVnetNSG"
           },
           "vmShutdownTimeTimeZoneId": {
             "value": "[parameters('vmShutdownTimeTimeZoneId')]"

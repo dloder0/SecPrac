@@ -9,20 +9,11 @@ var adminPassword = '${uniqueString(subscription().subscriptionId)}E#w2e'
 var location = resourceGroup().location
 
 var subnetName = 'AttackerSubnet'
-var vnetName = 'AttackerVnet'
+var vnetName = 'contosoVnet'
 
 resource Create_contosoVnet 'Microsoft.Network/virtualNetworks@2023-04-01' existing = {
   name: vnetName
 }
-
-resource Create_AttackerVnetNSG 'Microsoft.Network/networkSecurityGroups@2020-05-01' = {
-  name: 'AttackerVnetNSG'
-  location: location
-  properties: {
-    securityRules: []
-  }
-}
-
 
 resource Create_AttackerSubnet 'Microsoft.Network/virtualNetworks/subnets@2023-04-01' = {
 
@@ -39,9 +30,9 @@ module Add_AttackerWin10 './createVirtualMachine.bicep' = {
   name: 'Add_AttackerWin10'
   params: {
     vmName: 'AttackerWin10'
-    virtualNetworkName: 'AttackerVnet'
+    virtualNetworkName: 'contosoVnet'
     subnetName: 'AttackerSubnet'
-    NSGName: 'AttackerVnetNSG'
+    NSGName: 'contosoVnetNSG'
     vmShutdownTimeTimeZoneId: vmShutdownTimeTimeZoneId
     vmShutdownTime: vmShutdownTime
     vmIpAddress: '192.168.5.10'
@@ -70,9 +61,9 @@ module Add_AttackerKali './createVirtualMachine.bicep' = {
   name: 'Add_AttackerKali'
   params: {
     vmName: 'AttackerKali'
-    virtualNetworkName: 'AttackerVnet'
+    virtualNetworkName: 'contosoVnet'
     subnetName: 'AttackerSubnet'
-    NSGName: 'AttackerVnetNSG'
+    NSGName: 'contosoVnetNSG'
     vmShutdownTimeTimeZoneId: vmShutdownTimeTimeZoneId
     vmIpAddress: '192.168.5.11'
     adminUsername: adminUsername
@@ -82,10 +73,10 @@ module Add_AttackerKali './createVirtualMachine.bicep' = {
       Offer: 'kali'
       version: 'latest'
       Publisher: 'kali-linux'
-      Sku: 'kali-2024-4'
+      Sku: 'kali-2024-3'
     }
     imagePlan: {
-      name: 'kali-2024-4'
+      name: 'kali-2024-3'
       publisher: 'kali-linux'
       product: 'kali'
     }
@@ -102,9 +93,9 @@ module Add_AttackerUbuntu './createVirtualMachine.bicep' = {
   name: 'Add_AttackerUbuntu'
   params: {
     vmName: 'AttackerUbuntu'
-    virtualNetworkName: 'AttackerVnet'
+    virtualNetworkName: 'contosoVnet'
     subnetName: 'AttackerSubnet'
-    NSGName: 'AttackerVnetNSG'
+    NSGName: 'contosoVnetNSG'
     vmShutdownTimeTimeZoneId: vmShutdownTimeTimeZoneId
     vmIpAddress: '192.168.5.12'
     adminUsername: adminUsername
