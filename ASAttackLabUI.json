@@ -49,7 +49,7 @@
                 "visible": true,
                 "options": {
                     "icon": "None",
-                    "text": "Before deploying this lab you must accept the Kali license one time in your subscription. In your Azure PowerShell Cloud Shell run the following command:\r\naz vm image terms accept --urn kali-linux:kali:kali-2024-3:latest"
+                    "text": "Before deploying this lab you must accept the Kali license one time in your subscription. In your Azure PowerShell Cloud Shell run the following command:\r\naz vm image terms accept --urn kali-linux:kali:kali-2024-4:latest"
                 }
             },
             {
