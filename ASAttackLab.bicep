@@ -73,10 +73,10 @@ module Add_AttackerKali './createVirtualMachine.bicep' = {
       Offer: 'kali'
       version: 'latest'
       Publisher: 'kali-linux'
-      Sku: 'kali-2024-3'
+      Sku: 'kali-2024-4'
     }
     imagePlan: {
-      name: 'kali-2024-3'
+      name: 'kali-2024-4'
       publisher: 'kali-linux'
       product: 'kali'
     }
