@@ -6,6 +6,9 @@ param virtualNetworkName string
 @description('The name of the existing subnet in the VNET')
 param subnetName string
 
+@description('The name of the existing NSG')
+param NSGName string
+
 @description('Optional: Name of existing availability set for the VM')
 param adAvailabilitySetName string = ''
 
@@ -97,6 +100,9 @@ resource vmNic 'Microsoft.Network/networkInterfaces@2023-04-01' = {
         }
       }
     ]
+    networkSecurityGroup: {
+      id: resourceId('Microsoft.Network/networkSecurityGroups', NSGName)
+    }
   }
 }
 

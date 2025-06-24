@@ -97,6 +97,7 @@ module Add_SVR19_DC1 './createVirtualMachine.bicep' = {
     vmName: 'SVR19-DC1'
     virtualNetworkName: 'contosoVNet'
     subnetName: 'contosoSubnet'
+    NSGName: 'contosoVnetNSG'
     vmShutdownTimeTimeZoneId: vmShutdownTimeTimeZoneId
     vmShutdownTime: vmShutdownTime
     vmIpAddress: '192.168.1.10'
@@ -117,7 +118,8 @@ module Add_SVR19_DC1 './createVirtualMachine.bicep' = {
   }
     dependsOn: [
       Create_contosoVnet
-  ]
+      Create_contosoVnetNSG
+ ]
 }
 
 module Add_Win10_ADM './createVirtualMachine.bicep' = {
@@ -126,6 +128,7 @@ module Add_Win10_ADM './createVirtualMachine.bicep' = {
     vmName: 'Win10-ADM'
     virtualNetworkName: 'contosoVNet'
     subnetName: 'contosoSubnet'
+    NSGName: 'contosoVnetNSG'
     vmShutdownTimeTimeZoneId: vmShutdownTimeTimeZoneId
     vmShutdownTime: vmShutdownTime
     vmIpAddress: '192.168.1.110'
@@ -146,6 +149,7 @@ module Add_Win10_ADM './createVirtualMachine.bicep' = {
   }
     dependsOn: [
       Create_contosoVnet
+      Create_contosoVnetNSG
       Add_SVR19_DC1
   ]
 }
@@ -156,6 +160,7 @@ module Add_Win10_CEO './createVirtualMachine.bicep' = {
     vmName: 'Win10-CEO'
     virtualNetworkName: 'contosoVNet'
     subnetName: 'contosoSubnet'
+    NSGName: 'contosoVnetNSG'
     vmShutdownTimeTimeZoneId: vmShutdownTimeTimeZoneId
     vmShutdownTime: vmShutdownTime
     vmIpAddress: '192.168.1.111'
@@ -176,6 +181,7 @@ module Add_Win10_CEO './createVirtualMachine.bicep' = {
   }
     dependsOn: [
       Create_contosoVnet
+      Create_contosoVnetNSG
       Add_SVR19_DC1
   ]
 }
@@ -186,6 +192,7 @@ module Add_Win11_USR './createVirtualMachine.bicep' = {
     vmName: 'Win11-USR'
     virtualNetworkName: 'contosoVNet'
     subnetName: 'contosoSubnet'
+    NSGName: 'contosoVnetNSG'
     vmShutdownTimeTimeZoneId: vmShutdownTimeTimeZoneId
     vmShutdownTime: vmShutdownTime
     vmIpAddress: '192.168.1.112'
@@ -206,6 +213,7 @@ module Add_Win11_USR './createVirtualMachine.bicep' = {
   }
     dependsOn: [
       Create_contosoVnet
+      Create_contosoVnetNSG
   ]
 }
 
@@ -215,6 +223,7 @@ module Add_SVR16_ADFS './createVirtualMachine.bicep' = {
     vmName: 'SVR16-ADFS'
     virtualNetworkName: 'contosoVNet'
     subnetName: 'contosoSubnet'
+    NSGName: 'contosoVnetNSG'
     vmShutdownTimeTimeZoneId: vmShutdownTimeTimeZoneId
     vmShutdownTime: vmShutdownTime
     vmIpAddress: '192.168.1.100'
@@ -235,6 +244,7 @@ module Add_SVR16_ADFS './createVirtualMachine.bicep' = {
   }
     dependsOn: [
       Create_contosoVnet
+      Create_contosoVnetNSG
       Add_SVR19_DC1
   ]
 }
@@ -245,6 +255,7 @@ module Add_SVR19_PKI './createVirtualMachine.bicep' = {
     vmName: 'SVR19-PKI'
     virtualNetworkName: 'contosoVNet'
     subnetName: 'contosoSubnet'
+    NSGName: 'contosoVnetNSG'
     vmShutdownTimeTimeZoneId: vmShutdownTimeTimeZoneId
     vmShutdownTime: vmShutdownTime
     vmIpAddress: '192.168.1.101'
@@ -265,6 +276,7 @@ module Add_SVR19_PKI './createVirtualMachine.bicep' = {
   }
     dependsOn: [
       Create_contosoVnet
+      Create_contosoVnetNSG
       Add_SVR19_DC1
   ]
 }
@@ -275,6 +287,7 @@ module Add_SVR22_SYNC './createVirtualMachine.bicep' = {
     vmName: 'SVR22-SYNC'
     virtualNetworkName: 'contosoVNet'
     subnetName: 'contosoSubnet'
+    NSGName: 'contosoVnetNSG'
     vmShutdownTimeTimeZoneId: vmShutdownTimeTimeZoneId
     vmShutdownTime: vmShutdownTime
     vmIpAddress: '192.168.1.102'
@@ -295,6 +308,7 @@ module Add_SVR22_SYNC './createVirtualMachine.bicep' = {
   }
     dependsOn: [
       Create_contosoVnet
+      Create_contosoVnetNSG
       Add_SVR19_DC1
   ]
 }
@@ -305,6 +319,7 @@ module Add_Ubuntu_Proxy './createVirtualMachine.bicep' = {
     vmName: 'Ubuntu-Proxy'
     virtualNetworkName: 'contosoVNet'
     subnetName: 'contosoSubnet'
+    NSGName: 'contosoVnetNSG'
     vmShutdownTimeTimeZoneId: vmShutdownTimeTimeZoneId
     vmShutdownTime: vmShutdownTime
     vmIpAddress: '192.168.1.200'
@@ -325,6 +340,7 @@ module Add_Ubuntu_Proxy './createVirtualMachine.bicep' = {
   }
     dependsOn: [
       Create_contosoVnet
+      Create_contosoVnetNSG
   ]
 }
 

@@ -4,8 +4,8 @@
   "metadata": {
     "_generator": {
       "name": "bicep",
-      "version": "0.33.93.31351",
-      "templateHash": "12859645914631428650"
+      "version": "0.36.1.42791",
+      "templateHash": "13865030743966462767"
     }
   },
   "parameters": {
@@ -134,6 +134,9 @@
           "subnetName": {
             "value": "contosoSubnet"
           },
+          "NSGName": {
+            "value": "contosoVnetNSG"
+          },
           "vmShutdownTimeTimeZoneId": {
             "value": "[parameters('vmShutdownTimeTimeZoneId')]"
           },
@@ -176,8 +179,8 @@
           "metadata": {
             "_generator": {
               "name": "bicep",
-              "version": "0.33.93.31351",
-              "templateHash": "8743654609875850986"
+              "version": "0.36.1.42791",
+              "templateHash": "10902521757577575250"
             }
           },
           "parameters": {
@@ -194,6 +197,12 @@
               "type": "string",
               "metadata": {
                 "description": "The name of the existing subnet in the VNET"
+              }
+            },
+            "NSGName": {
+              "type": "string",
+              "metadata": {
+                "description": "The name of the existing NSG"
               }
             },
             "adAvailabilitySetName": {
@@ -341,7 +350,10 @@
                       "publicIPAddress": "[if(parameters('addPublicIp'), createObject('id', resourceId('Microsoft.Network/publicIPAddresses', variables('vmPublicIPName'))), null())]"
                     }
                   }
-                ]
+                ],
+                "networkSecurityGroup": {
+                  "id": "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('NSGName'))]"
+                }
               },
               "dependsOn": [
                 "[resourceId('Microsoft.Network/publicIPAddresses', variables('vmPublicIPName'))]"
@@ -461,7 +473,8 @@
         }
       },
       "dependsOn": [
-        "[resourceId('Microsoft.Network/virtualNetworks', 'contosoVnet')]"
+        "[resourceId('Microsoft.Network/virtualNetworks', 'contosoVnet')]",
+        "[resourceId('Microsoft.Network/networkSecurityGroups', 'contosoVnetNSG')]"
       ]
     },
     {
@@ -482,6 +495,9 @@
           },
           "subnetName": {
             "value": "contosoSubnet"
+          },
+          "NSGName": {
+            "value": "contosoVnetNSG"
           },
           "vmShutdownTimeTimeZoneId": {
             "value": "[parameters('vmShutdownTimeTimeZoneId')]"
@@ -525,8 +541,8 @@
           "metadata": {
             "_generator": {
               "name": "bicep",
-              "version": "0.33.93.31351",
-              "templateHash": "8743654609875850986"
+              "version": "0.36.1.42791",
+              "templateHash": "10902521757577575250"
             }
           },
           "parameters": {
@@ -543,6 +559,12 @@
               "type": "string",
               "metadata": {
                 "description": "The name of the existing subnet in the VNET"
+              }
+            },
+            "NSGName": {
+              "type": "string",
+              "metadata": {
+                "description": "The name of the existing NSG"
               }
             },
             "adAvailabilitySetName": {
@@ -690,7 +712,10 @@
                       "publicIPAddress": "[if(parameters('addPublicIp'), createObject('id', resourceId('Microsoft.Network/publicIPAddresses', variables('vmPublicIPName'))), null())]"
                     }
                   }
-                ]
+                ],
+                "networkSecurityGroup": {
+                  "id": "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('NSGName'))]"
+                }
               },
               "dependsOn": [
                 "[resourceId('Microsoft.Network/publicIPAddresses', variables('vmPublicIPName'))]"
@@ -811,7 +836,8 @@
       },
       "dependsOn": [
         "[resourceId('Microsoft.Resources/deployments', 'Add_SVR19_DC1')]",
-        "[resourceId('Microsoft.Network/virtualNetworks', 'contosoVnet')]"
+        "[resourceId('Microsoft.Network/virtualNetworks', 'contosoVnet')]",
+        "[resourceId('Microsoft.Network/networkSecurityGroups', 'contosoVnetNSG')]"
       ]
     },
     {
@@ -832,6 +858,9 @@
           },
           "subnetName": {
             "value": "contosoSubnet"
+          },
+          "NSGName": {
+            "value": "contosoVnetNSG"
           },
           "vmShutdownTimeTimeZoneId": {
             "value": "[parameters('vmShutdownTimeTimeZoneId')]"
@@ -875,8 +904,8 @@
           "metadata": {
             "_generator": {
               "name": "bicep",
-              "version": "0.33.93.31351",
-              "templateHash": "8743654609875850986"
+              "version": "0.36.1.42791",
+              "templateHash": "10902521757577575250"
             }
           },
           "parameters": {
@@ -893,6 +922,12 @@
               "type": "string",
               "metadata": {
                 "description": "The name of the existing subnet in the VNET"
+              }
+            },
+            "NSGName": {
+              "type": "string",
+              "metadata": {
+                "description": "The name of the existing NSG"
               }
             },
             "adAvailabilitySetName": {
@@ -1040,7 +1075,10 @@
                       "publicIPAddress": "[if(parameters('addPublicIp'), createObject('id', resourceId('Microsoft.Network/publicIPAddresses', variables('vmPublicIPName'))), null())]"
                     }
                   }
-                ]
+                ],
+                "networkSecurityGroup": {
+                  "id": "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('NSGName'))]"
+                }
               },
               "dependsOn": [
                 "[resourceId('Microsoft.Network/publicIPAddresses', variables('vmPublicIPName'))]"
@@ -1161,7 +1199,8 @@
       },
       "dependsOn": [
         "[resourceId('Microsoft.Resources/deployments', 'Add_SVR19_DC1')]",
-        "[resourceId('Microsoft.Network/virtualNetworks', 'contosoVnet')]"
+        "[resourceId('Microsoft.Network/virtualNetworks', 'contosoVnet')]",
+        "[resourceId('Microsoft.Network/networkSecurityGroups', 'contosoVnetNSG')]"
       ]
     },
     {
@@ -1182,6 +1221,9 @@
           },
           "subnetName": {
             "value": "contosoSubnet"
+          },
+          "NSGName": {
+            "value": "contosoVnetNSG"
           },
           "vmShutdownTimeTimeZoneId": {
             "value": "[parameters('vmShutdownTimeTimeZoneId')]"
@@ -1225,8 +1267,8 @@
           "metadata": {
             "_generator": {
               "name": "bicep",
-              "version": "0.33.93.31351",
-              "templateHash": "8743654609875850986"
+              "version": "0.36.1.42791",
+              "templateHash": "10902521757577575250"
             }
           },
           "parameters": {
@@ -1243,6 +1285,12 @@
               "type": "string",
               "metadata": {
                 "description": "The name of the existing subnet in the VNET"
+              }
+            },
+            "NSGName": {
+              "type": "string",
+              "metadata": {
+                "description": "The name of the existing NSG"
               }
             },
             "adAvailabilitySetName": {
@@ -1390,7 +1438,10 @@
                       "publicIPAddress": "[if(parameters('addPublicIp'), createObject('id', resourceId('Microsoft.Network/publicIPAddresses', variables('vmPublicIPName'))), null())]"
                     }
                   }
-                ]
+                ],
+                "networkSecurityGroup": {
+                  "id": "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('NSGName'))]"
+                }
               },
               "dependsOn": [
                 "[resourceId('Microsoft.Network/publicIPAddresses', variables('vmPublicIPName'))]"
@@ -1510,7 +1561,8 @@
         }
       },
       "dependsOn": [
-        "[resourceId('Microsoft.Network/virtualNetworks', 'contosoVnet')]"
+        "[resourceId('Microsoft.Network/virtualNetworks', 'contosoVnet')]",
+        "[resourceId('Microsoft.Network/networkSecurityGroups', 'contosoVnetNSG')]"
       ]
     },
     {
@@ -1531,6 +1583,9 @@
           },
           "subnetName": {
             "value": "contosoSubnet"
+          },
+          "NSGName": {
+            "value": "contosoVnetNSG"
           },
           "vmShutdownTimeTimeZoneId": {
             "value": "[parameters('vmShutdownTimeTimeZoneId')]"
@@ -1574,8 +1629,8 @@
           "metadata": {
             "_generator": {
               "name": "bicep",
-              "version": "0.33.93.31351",
-              "templateHash": "8743654609875850986"
+              "version": "0.36.1.42791",
+              "templateHash": "10902521757577575250"
             }
           },
           "parameters": {
@@ -1592,6 +1647,12 @@
               "type": "string",
               "metadata": {
                 "description": "The name of the existing subnet in the VNET"
+              }
+            },
+            "NSGName": {
+              "type": "string",
+              "metadata": {
+                "description": "The name of the existing NSG"
               }
             },
             "adAvailabilitySetName": {
@@ -1739,7 +1800,10 @@
                       "publicIPAddress": "[if(parameters('addPublicIp'), createObject('id', resourceId('Microsoft.Network/publicIPAddresses', variables('vmPublicIPName'))), null())]"
                     }
                   }
-                ]
+                ],
+                "networkSecurityGroup": {
+                  "id": "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('NSGName'))]"
+                }
               },
               "dependsOn": [
                 "[resourceId('Microsoft.Network/publicIPAddresses', variables('vmPublicIPName'))]"
@@ -1860,7 +1924,8 @@
       },
       "dependsOn": [
         "[resourceId('Microsoft.Resources/deployments', 'Add_SVR19_DC1')]",
-        "[resourceId('Microsoft.Network/virtualNetworks', 'contosoVnet')]"
+        "[resourceId('Microsoft.Network/virtualNetworks', 'contosoVnet')]",
+        "[resourceId('Microsoft.Network/networkSecurityGroups', 'contosoVnetNSG')]"
       ]
     },
     {
@@ -1881,6 +1946,9 @@
           },
           "subnetName": {
             "value": "contosoSubnet"
+          },
+          "NSGName": {
+            "value": "contosoVnetNSG"
           },
           "vmShutdownTimeTimeZoneId": {
             "value": "[parameters('vmShutdownTimeTimeZoneId')]"
@@ -1924,8 +1992,8 @@
           "metadata": {
             "_generator": {
               "name": "bicep",
-              "version": "0.33.93.31351",
-              "templateHash": "8743654609875850986"
+              "version": "0.36.1.42791",
+              "templateHash": "10902521757577575250"
             }
           },
           "parameters": {
@@ -1942,6 +2010,12 @@
               "type": "string",
               "metadata": {
                 "description": "The name of the existing subnet in the VNET"
+              }
+            },
+            "NSGName": {
+              "type": "string",
+              "metadata": {
+                "description": "The name of the existing NSG"
               }
             },
             "adAvailabilitySetName": {
@@ -2089,7 +2163,10 @@
                       "publicIPAddress": "[if(parameters('addPublicIp'), createObject('id', resourceId('Microsoft.Network/publicIPAddresses', variables('vmPublicIPName'))), null())]"
                     }
                   }
-                ]
+                ],
+                "networkSecurityGroup": {
+                  "id": "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('NSGName'))]"
+                }
               },
               "dependsOn": [
                 "[resourceId('Microsoft.Network/publicIPAddresses', variables('vmPublicIPName'))]"
@@ -2210,7 +2287,8 @@
       },
       "dependsOn": [
         "[resourceId('Microsoft.Resources/deployments', 'Add_SVR19_DC1')]",
-        "[resourceId('Microsoft.Network/virtualNetworks', 'contosoVnet')]"
+        "[resourceId('Microsoft.Network/virtualNetworks', 'contosoVnet')]",
+        "[resourceId('Microsoft.Network/networkSecurityGroups', 'contosoVnetNSG')]"
       ]
     },
     {
@@ -2231,6 +2309,9 @@
           },
           "subnetName": {
             "value": "contosoSubnet"
+          },
+          "NSGName": {
+            "value": "contosoVnetNSG"
           },
           "vmShutdownTimeTimeZoneId": {
             "value": "[parameters('vmShutdownTimeTimeZoneId')]"
@@ -2274,8 +2355,8 @@
           "metadata": {
             "_generator": {
               "name": "bicep",
-              "version": "0.33.93.31351",
-              "templateHash": "8743654609875850986"
+              "version": "0.36.1.42791",
+              "templateHash": "10902521757577575250"
             }
           },
           "parameters": {
@@ -2292,6 +2373,12 @@
               "type": "string",
               "metadata": {
                 "description": "The name of the existing subnet in the VNET"
+              }
+            },
+            "NSGName": {
+              "type": "string",
+              "metadata": {
+                "description": "The name of the existing NSG"
               }
             },
             "adAvailabilitySetName": {
@@ -2439,7 +2526,10 @@
                       "publicIPAddress": "[if(parameters('addPublicIp'), createObject('id', resourceId('Microsoft.Network/publicIPAddresses', variables('vmPublicIPName'))), null())]"
                     }
                   }
-                ]
+                ],
+                "networkSecurityGroup": {
+                  "id": "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('NSGName'))]"
+                }
               },
               "dependsOn": [
                 "[resourceId('Microsoft.Network/publicIPAddresses', variables('vmPublicIPName'))]"
@@ -2560,7 +2650,8 @@
       },
       "dependsOn": [
         "[resourceId('Microsoft.Resources/deployments', 'Add_SVR19_DC1')]",
-        "[resourceId('Microsoft.Network/virtualNetworks', 'contosoVnet')]"
+        "[resourceId('Microsoft.Network/virtualNetworks', 'contosoVnet')]",
+        "[resourceId('Microsoft.Network/networkSecurityGroups', 'contosoVnetNSG')]"
       ]
     },
     {
@@ -2581,6 +2672,9 @@
           },
           "subnetName": {
             "value": "contosoSubnet"
+          },
+          "NSGName": {
+            "value": "contosoVnetNSG"
           },
           "vmShutdownTimeTimeZoneId": {
             "value": "[parameters('vmShutdownTimeTimeZoneId')]"
@@ -2624,8 +2718,8 @@
           "metadata": {
             "_generator": {
               "name": "bicep",
-              "version": "0.33.93.31351",
-              "templateHash": "8743654609875850986"
+              "version": "0.36.1.42791",
+              "templateHash": "10902521757577575250"
             }
           },
           "parameters": {
@@ -2642,6 +2736,12 @@
               "type": "string",
               "metadata": {
                 "description": "The name of the existing subnet in the VNET"
+              }
+            },
+            "NSGName": {
+              "type": "string",
+              "metadata": {
+                "description": "The name of the existing NSG"
               }
             },
             "adAvailabilitySetName": {
@@ -2789,7 +2889,10 @@
                       "publicIPAddress": "[if(parameters('addPublicIp'), createObject('id', resourceId('Microsoft.Network/publicIPAddresses', variables('vmPublicIPName'))), null())]"
                     }
                   }
-                ]
+                ],
+                "networkSecurityGroup": {
+                  "id": "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('NSGName'))]"
+                }
               },
               "dependsOn": [
                 "[resourceId('Microsoft.Network/publicIPAddresses', variables('vmPublicIPName'))]"
@@ -2909,7 +3012,8 @@
         }
       },
       "dependsOn": [
-        "[resourceId('Microsoft.Network/virtualNetworks', 'contosoVnet')]"
+        "[resourceId('Microsoft.Network/virtualNetworks', 'contosoVnet')]",
+        "[resourceId('Microsoft.Network/networkSecurityGroups', 'contosoVnetNSG')]"
       ]
     }
   ]
