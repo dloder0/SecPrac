@@ -186,10 +186,10 @@ module Add_Win10_CEO './createVirtualMachine.bicep' = {
   ]
 }
 
-module Add_Win11_USR './createVirtualMachine.bicep' = {
-  name: 'Add_Win11_USR'
+module Add_Win11_CFO './createVirtualMachine.bicep' = {
+  name: 'Add_Win11_CFO'
   params: {
-    vmName: 'Win11-USR'
+    vmName: 'Win11-CFO'
     virtualNetworkName: 'contosoVNet'
     subnetName: 'contosoSubnet'
     NSGName: 'contosoVnetNSG'

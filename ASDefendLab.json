@@ -4,8 +4,8 @@
   "metadata": {
     "_generator": {
       "name": "bicep",
-      "version": "0.36.1.42791",
-      "templateHash": "13865030743966462767"
+      "version": "0.36.177.2456",
+      "templateHash": "2081194136561052844"
     }
   },
   "parameters": {
@@ -179,8 +179,8 @@
           "metadata": {
             "_generator": {
               "name": "bicep",
-              "version": "0.36.1.42791",
-              "templateHash": "10902521757577575250"
+              "version": "0.36.177.2456",
+              "templateHash": "16196081109349831631"
             }
           },
           "parameters": {
@@ -541,8 +541,8 @@
           "metadata": {
             "_generator": {
               "name": "bicep",
-              "version": "0.36.1.42791",
-              "templateHash": "10902521757577575250"
+              "version": "0.36.177.2456",
+              "templateHash": "16196081109349831631"
             }
           },
           "parameters": {
@@ -904,8 +904,8 @@
           "metadata": {
             "_generator": {
               "name": "bicep",
-              "version": "0.36.1.42791",
-              "templateHash": "10902521757577575250"
+              "version": "0.36.177.2456",
+              "templateHash": "16196081109349831631"
             }
           },
           "parameters": {
@@ -1206,7 +1206,7 @@
     {
       "type": "Microsoft.Resources/deployments",
       "apiVersion": "2022-09-01",
-      "name": "Add_Win11_USR",
+      "name": "Add_Win11_CFO",
       "properties": {
         "expressionEvaluationOptions": {
           "scope": "inner"
@@ -1214,7 +1214,7 @@
         "mode": "Incremental",
         "parameters": {
           "vmName": {
-            "value": "Win11-USR"
+            "value": "Win11-CFO"
           },
           "virtualNetworkName": {
             "value": "contosoVNet"
@@ -1267,8 +1267,8 @@
           "metadata": {
             "_generator": {
               "name": "bicep",
-              "version": "0.36.1.42791",
-              "templateHash": "10902521757577575250"
+              "version": "0.36.177.2456",
+              "templateHash": "16196081109349831631"
             }
           },
           "parameters": {
@@ -1629,8 +1629,8 @@
           "metadata": {
             "_generator": {
               "name": "bicep",
-              "version": "0.36.1.42791",
-              "templateHash": "10902521757577575250"
+              "version": "0.36.177.2456",
+              "templateHash": "16196081109349831631"
             }
           },
           "parameters": {
@@ -1992,8 +1992,8 @@
           "metadata": {
             "_generator": {
               "name": "bicep",
-              "version": "0.36.1.42791",
-              "templateHash": "10902521757577575250"
+              "version": "0.36.177.2456",
+              "templateHash": "16196081109349831631"
             }
           },
           "parameters": {
@@ -2355,8 +2355,8 @@
           "metadata": {
             "_generator": {
               "name": "bicep",
-              "version": "0.36.1.42791",
-              "templateHash": "10902521757577575250"
+              "version": "0.36.177.2456",
+              "templateHash": "16196081109349831631"
             }
           },
           "parameters": {
@@ -2718,8 +2718,8 @@
           "metadata": {
             "_generator": {
               "name": "bicep",
-              "version": "0.36.1.42791",
-              "templateHash": "10902521757577575250"
+              "version": "0.36.177.2456",
+              "templateHash": "16196081109349831631"
             }
           },
           "parameters": {
