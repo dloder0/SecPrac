@@ -5,7 +5,7 @@
     "_generator": {
       "name": "bicep",
       "version": "0.36.177.2456",
-      "templateHash": "22385314520844376"
+      "templateHash": "14049387761905979854"
     }
   },
   "parameters": {
@@ -25,11 +25,13 @@
     }
   },
   "variables": {
+    "natGatewayName": "NATGateway",
+    "publicipName": "public-ip-nat",
     "adminUsername": "iamroot",
     "adminPassword": "[format('{0}E#w2e', uniqueString(subscription().subscriptionId))]",
-    "location": "[resourceGroup().location]",
     "BastionName": "Bastion",
-    "BastionPublicIPName": "Bastion-ip"
+    "BastionPublicIPName": "Bastion-ip",
+    "location": "[resourceGroup().location]"
   },
   "resources": [
     {
@@ -40,6 +42,40 @@
       "properties": {
         "securityRules": []
       }
+    },
+    {
+      "type": "Microsoft.Network/publicIPAddresses",
+      "apiVersion": "2021-05-01",
+      "name": "[variables('publicipName')]",
+      "location": "[variables('location')]",
+      "sku": {
+        "name": "Standard"
+      },
+      "properties": {
+        "publicIPAddressVersion": "IPv4",
+        "publicIPAllocationMethod": "Static",
+        "idleTimeoutInMinutes": 4
+      }
+    },
+    {
+      "type": "Microsoft.Network/natGateways",
+      "apiVersion": "2024-07-01",
+      "name": "[variables('natGatewayName')]",
+      "location": "[variables('location')]",
+      "sku": {
+        "name": "Standard"
+      },
+      "properties": {
+        "idleTimeoutInMinutes": 4,
+        "publicIpAddresses": [
+          {
+            "id": "[resourceId('Microsoft.Network/publicIPAddresses', variables('publicipName'))]"
+          }
+        ]
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Network/publicIPAddresses', variables('publicipName'))]"
+      ]
     },
     {
       "type": "Microsoft.Network/virtualNetworks",
@@ -56,7 +92,10 @@
           {
             "name": "contosoSubnet",
             "properties": {
-              "addressPrefix": "192.168.1.0/24"
+              "addressPrefix": "192.168.1.0/24",
+              "natGateway": {
+                "id": "[resourceId('Microsoft.Network/natGateways', variables('natGatewayName'))]"
+              }
             }
           },
           {
@@ -71,7 +110,10 @@
             "192.168.0.0/16"
           ]
         }
-      }
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Network/natGateways', variables('natGatewayName'))]"
+      ]
     },
     {
       "type": "Microsoft.Network/publicIPAddresses",
