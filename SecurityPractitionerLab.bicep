@@ -381,7 +381,7 @@ module Add_AttackerWin10 './createVirtualMachine.bicep' = {
     vmIpAddress: '192.168.5.10'
     adminUsername: attackerUsername
     adminPassword: adminPassword
-    adminFullUsername: adminUsername
+    adminFullUsername: attackerUsername
     imageReference: {
       version: 'latest'
       Publisher: 'MicrosoftWindowsDesktop'
@@ -409,7 +409,7 @@ module Add_AttackerKali './createVirtualMachine.bicep' = {
     vmIpAddress: '192.168.5.11'
     adminUsername: attackerUsername
     adminPassword: adminPassword
-    adminFullUsername: adminUsername
+    adminFullUsername: attackerUsername
     imageReference: {
       Offer: 'kali'
       version: 'latest'
@@ -441,7 +441,7 @@ module Add_AttackerUbuntu './createVirtualMachine.bicep' = {
     vmIpAddress: '192.168.5.12'
     adminUsername: attackerUsername
     adminPassword: adminPassword
-    adminFullUsername: adminUsername
+    adminFullUsername: attackerUsername
     vmSize: 'Standard_D2s_v3'
     imageReference: {
       Offer: '0001-com-ubuntu-server-jammy'
