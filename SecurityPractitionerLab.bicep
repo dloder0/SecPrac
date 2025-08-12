@@ -4,6 +4,9 @@ param vmShutdownTimeTimeZoneId string = 'Pacific Standard Time'
 @description('20:00: The time the VM should shutdown.')
 param vmShutdownTime string = '20:00'
 
+@description('VM Size')
+param vmSize string = 'Standard_B2as_v2'
+
 var natGatewayName = 'NATGateway'
 var publicipName = 'NAT-ip'
 var adminUsername = 'iamroot'
@@ -139,6 +142,7 @@ module Add_SVR19_DC1 './createVirtualMachine.bicep' = {
     virtualNetworkName: 'contosoVNet'
     subnetName: 'contosoSubnet'
     NSGName: 'contosoVnetNSG'
+    vmSize: vmSize
     vmShutdownTimeTimeZoneId: vmShutdownTimeTimeZoneId
     vmShutdownTime: vmShutdownTime
     vmIpAddress: '192.168.1.10'
@@ -168,6 +172,7 @@ module Add_Win10_ADM './createVirtualMachine.bicep' = {
     virtualNetworkName: 'contosoVNet'
     subnetName: 'contosoSubnet'
     NSGName: 'contosoVnetNSG'
+    vmSize: vmSize
     vmShutdownTimeTimeZoneId: vmShutdownTimeTimeZoneId
     vmShutdownTime: vmShutdownTime
     vmIpAddress: '192.168.1.110'
@@ -198,6 +203,7 @@ module Add_Win10_CEO './createVirtualMachine.bicep' = {
     virtualNetworkName: 'contosoVNet'
     subnetName: 'contosoSubnet'
     NSGName: 'contosoVnetNSG'
+    vmSize: vmSize
     vmShutdownTimeTimeZoneId: vmShutdownTimeTimeZoneId
     vmShutdownTime: vmShutdownTime
     vmIpAddress: '192.168.1.111'
@@ -228,6 +234,7 @@ module Add_Win11_CFO './createVirtualMachine.bicep' = {
     virtualNetworkName: 'contosoVNet'
     subnetName: 'contosoSubnet'
     NSGName: 'contosoVnetNSG'
+    vmSize: vmSize
     vmShutdownTimeTimeZoneId: vmShutdownTimeTimeZoneId
     vmShutdownTime: vmShutdownTime
     vmIpAddress: '192.168.1.112'
@@ -257,6 +264,7 @@ module Add_SVR16_ADFS './createVirtualMachine.bicep' = {
     virtualNetworkName: 'contosoVNet'
     subnetName: 'contosoSubnet'
     NSGName: 'contosoVnetNSG'
+    vmSize: vmSize
     vmShutdownTimeTimeZoneId: vmShutdownTimeTimeZoneId
     vmShutdownTime: vmShutdownTime
     vmIpAddress: '192.168.1.100'
@@ -287,6 +295,7 @@ module Add_SVR19_PKI './createVirtualMachine.bicep' = {
     virtualNetworkName: 'contosoVNet'
     subnetName: 'contosoSubnet'
     NSGName: 'contosoVnetNSG'
+    vmSize: vmSize
     vmShutdownTimeTimeZoneId: vmShutdownTimeTimeZoneId
     vmShutdownTime: vmShutdownTime
     vmIpAddress: '192.168.1.101'
@@ -317,6 +326,7 @@ module Add_SVR22_SYNC './createVirtualMachine.bicep' = {
     virtualNetworkName: 'contosoVNet'
     subnetName: 'contosoSubnet'
     NSGName: 'contosoVnetNSG'
+    vmSize: vmSize
     vmShutdownTimeTimeZoneId: vmShutdownTimeTimeZoneId
     vmShutdownTime: vmShutdownTime
     vmIpAddress: '192.168.1.102'
@@ -347,6 +357,7 @@ module Add_Ubuntu_Proxy './createVirtualMachine.bicep' = {
     virtualNetworkName: 'contosoVNet'
     subnetName: 'contosoSubnet'
     NSGName: 'contosoVnetNSG'
+    vmSize: vmSize
     vmShutdownTimeTimeZoneId: vmShutdownTimeTimeZoneId
     vmShutdownTime: vmShutdownTime
     vmIpAddress: '192.168.1.200'
@@ -376,6 +387,7 @@ module Add_AttackerWin10 './createVirtualMachine.bicep' = {
     virtualNetworkName: 'contosoVnet'
     subnetName: 'AttackerSubnet'
     NSGName: 'contosoVnetNSG'
+    vmSize: vmSize
     vmShutdownTimeTimeZoneId: vmShutdownTimeTimeZoneId
     vmShutdownTime: vmShutdownTime
     vmIpAddress: '192.168.5.10'
@@ -405,6 +417,7 @@ module Add_AttackerKali './createVirtualMachine.bicep' = {
     virtualNetworkName: 'contosoVnet'
     subnetName: 'AttackerSubnet'
     NSGName: 'contosoVnetNSG'
+    vmSize: vmSize
     vmShutdownTimeTimeZoneId: vmShutdownTimeTimeZoneId
     vmIpAddress: '192.168.5.11'
     adminUsername: attackerUsername
@@ -437,12 +450,12 @@ module Add_AttackerUbuntu './createVirtualMachine.bicep' = {
     virtualNetworkName: 'contosoVnet'
     subnetName: 'AttackerSubnet'
     NSGName: 'contosoVnetNSG'
+    vmSize: vmSize
     vmShutdownTimeTimeZoneId: vmShutdownTimeTimeZoneId
     vmIpAddress: '192.168.5.12'
     adminUsername: attackerUsername
     adminPassword: adminPassword
     adminFullUsername: attackerUsername
-    vmSize: 'Standard_D2s_v3'
     imageReference: {
       Offer: '0001-com-ubuntu-server-jammy'
       version: 'latest'

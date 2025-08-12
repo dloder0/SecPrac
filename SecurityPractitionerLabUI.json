@@ -63,6 +63,30 @@
                 }
             },
             {
+                "name": "vmSize",
+                "type": "Microsoft.Compute.SizeSelector",
+                "label": "Size",
+                "toolTip": "",
+                "recommendedSizes": [
+                    "Standard_B2as_v2",
+                    "Standard_B2s",
+                    "Standard_D2als_v6",
+                    "Standard_B2ms",
+                    "Standard_D2ls_v6",
+                    "Standard_B2als_v2",
+                    "Standard_B2ls_v2",
+                    "Standard_B2s_v2",
+                    "Standard_D2ls_v5",
+                    "Standard_D2as_v5",
+                    "Standard_A2_v2"
+                ],
+                "options": {
+                    "hideDiskTypeFilter": false
+                },
+                "osPlatform": "Windows",
+                "visible": true
+            },
+            {
                 "name": "vmShutdownTimeTimeZoneId",
                 "type": "Microsoft.Common.DropDown",
                 "label": "Time Zone for the VMs",
@@ -612,6 +636,7 @@
         ],
         "outputs": {
             "location": "[location()]",
+            "vmSize": "[basics('vmSize')]",
             "vmShutdownTimeTimeZoneId": "[basics('vmShutdownTimeTimeZoneId')]",
             "vmShutdownTime": "[basics('vmShutdownTime')]"
         }

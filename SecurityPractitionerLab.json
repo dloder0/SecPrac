@@ -5,7 +5,7 @@
     "_generator": {
       "name": "bicep",
       "version": "0.37.4.10188",
-      "templateHash": "15984882869666925691"
+      "templateHash": "10122732385439883723"
     }
   },
   "parameters": {
@@ -21,6 +21,13 @@
       "defaultValue": "20:00",
       "metadata": {
         "description": "20:00: The time the VM should shutdown."
+      }
+    },
+    "vmSize": {
+      "type": "string",
+      "defaultValue": "Standard_B2as_v2",
+      "metadata": {
+        "description": "VM Size"
       }
     }
   },
@@ -188,6 +195,9 @@
           },
           "NSGName": {
             "value": "contosoVnetNSG"
+          },
+          "vmSize": {
+            "value": "[parameters('vmSize')]"
           },
           "vmShutdownTimeTimeZoneId": {
             "value": "[parameters('vmShutdownTimeTimeZoneId')]"
@@ -550,6 +560,9 @@
           },
           "NSGName": {
             "value": "contosoVnetNSG"
+          },
+          "vmSize": {
+            "value": "[parameters('vmSize')]"
           },
           "vmShutdownTimeTimeZoneId": {
             "value": "[parameters('vmShutdownTimeTimeZoneId')]"
@@ -914,6 +927,9 @@
           "NSGName": {
             "value": "contosoVnetNSG"
           },
+          "vmSize": {
+            "value": "[parameters('vmSize')]"
+          },
           "vmShutdownTimeTimeZoneId": {
             "value": "[parameters('vmShutdownTimeTimeZoneId')]"
           },
@@ -1277,6 +1293,9 @@
           "NSGName": {
             "value": "contosoVnetNSG"
           },
+          "vmSize": {
+            "value": "[parameters('vmSize')]"
+          },
           "vmShutdownTimeTimeZoneId": {
             "value": "[parameters('vmShutdownTimeTimeZoneId')]"
           },
@@ -1638,6 +1657,9 @@
           },
           "NSGName": {
             "value": "contosoVnetNSG"
+          },
+          "vmSize": {
+            "value": "[parameters('vmSize')]"
           },
           "vmShutdownTimeTimeZoneId": {
             "value": "[parameters('vmShutdownTimeTimeZoneId')]"
@@ -2002,6 +2024,9 @@
           "NSGName": {
             "value": "contosoVnetNSG"
           },
+          "vmSize": {
+            "value": "[parameters('vmSize')]"
+          },
           "vmShutdownTimeTimeZoneId": {
             "value": "[parameters('vmShutdownTimeTimeZoneId')]"
           },
@@ -2364,6 +2389,9 @@
           },
           "NSGName": {
             "value": "contosoVnetNSG"
+          },
+          "vmSize": {
+            "value": "[parameters('vmSize')]"
           },
           "vmShutdownTimeTimeZoneId": {
             "value": "[parameters('vmShutdownTimeTimeZoneId')]"
@@ -2728,6 +2756,9 @@
           "NSGName": {
             "value": "contosoVnetNSG"
           },
+          "vmSize": {
+            "value": "[parameters('vmSize')]"
+          },
           "vmShutdownTimeTimeZoneId": {
             "value": "[parameters('vmShutdownTimeTimeZoneId')]"
           },
@@ -3090,6 +3121,9 @@
           "NSGName": {
             "value": "contosoVnetNSG"
           },
+          "vmSize": {
+            "value": "[parameters('vmSize')]"
+          },
           "vmShutdownTimeTimeZoneId": {
             "value": "[parameters('vmShutdownTimeTimeZoneId')]"
           },
@@ -3451,6 +3485,9 @@
           },
           "NSGName": {
             "value": "contosoVnetNSG"
+          },
+          "vmSize": {
+            "value": "[parameters('vmSize')]"
           },
           "vmShutdownTimeTimeZoneId": {
             "value": "[parameters('vmShutdownTimeTimeZoneId')]"
@@ -3815,6 +3852,9 @@
           "NSGName": {
             "value": "contosoVnetNSG"
           },
+          "vmSize": {
+            "value": "[parameters('vmSize')]"
+          },
           "vmShutdownTimeTimeZoneId": {
             "value": "[parameters('vmShutdownTimeTimeZoneId')]"
           },
@@ -3829,9 +3869,6 @@
           },
           "adminFullUsername": {
             "value": "[variables('attackerUsername')]"
-          },
-          "vmSize": {
-            "value": "Standard_D2s_v3"
           },
           "imageReference": {
             "value": {
