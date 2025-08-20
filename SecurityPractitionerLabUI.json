@@ -10,34 +10,6 @@
                     "resourceTypes": [
                         "Microsoft.Compute/virtualMachines"
                     ],
-                    "allowedValues": [
-                        "australiaeast",
-                        "australiasoutheast",
-                        "brazilsouth",
-                        "canadacentral",
-                        "canadaeast",
-                        "centralindia",
-                        "centralus",
-                        "eastasia",
-                        "eastus2",
-                        "francecentral",
-                        "germanywestcentral",
-                        "israelcentral",
-                        "italynorth",
-                        "japanwest",
-                        "jioindiawest",
-                        "koreacentral",
-                        "northeurope",
-                        "norwayeast",
-                        "southeastasia",
-                        "swedencentral",
-                        "uaenorth",
-                        "uksouth",
-                        "ukwest",
-                        "westcentralus",
-                        "westeurope",
-                        "westus"
-                    ],
                     "visible": true
                 }
             }
