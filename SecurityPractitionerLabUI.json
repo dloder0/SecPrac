@@ -40,7 +40,7 @@
                 "visible": true,
                 "options": {
                     "icon": "None",
-                    "text": "We recommend VMs with 2 vCPU and 8 GB memory: B2as_v2, B2s, D2als_v6, B2ms, D2ls_v6, B2als_v2, B2ls_v2, B2s_v2, D2ls_v5, D2as_v5, A2_v2. Larger sizes have higher costs."
+                    "text": "We recommend VMs with 2 vCPU and 8 GB memory: B2as_v2, B2s, D2als_v6, B2ms, D2ls_v6, B2als_v2, B2ls_v2, B2s_v2, D2ls_v5, D2as_v5, A2_v2. Larger sizes have higher costs. With capacity restrictions you may have to try other regions or different VM sizes."
                 }
             },
             {
