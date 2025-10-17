@@ -5,7 +5,7 @@
     "_generator": {
       "name": "bicep",
       "version": "0.37.4.10188",
-      "templateHash": "7098009465653001519"
+      "templateHash": "17739559166282994701"
     }
   },
   "parameters": {
@@ -3672,12 +3672,12 @@
               "Offer": "kali",
               "version": "latest",
               "Publisher": "kali-linux",
-              "Sku": "kali-2024-4"
+              "Sku": "kali-2025-3"
             }
           },
           "imagePlan": {
             "value": {
-              "name": "kali-2024-4",
+              "name": "kali-2025-3",
               "publisher": "kali-linux",
               "product": "kali"
             }
