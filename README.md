@@ -3,6 +3,7 @@
 
 [Deploy Security Practitioner (combined) via aka link](https://aka.ms/SecPracDeploy)
 
+[Deploy XDR Ops](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fdloder0%2FSecPrac%2Fmain%2FXDROpsLab.json/createUIDefinitionUri/https%3A%2F%2Fraw.githubusercontent.com%2Fdloder0%2FSecPrac%2Fmain%2FXDROpsLabUI.json)
 
 -old- [Deploy ASDefend](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fdloder0%2FSecPrac%2Fmain%2FASDefendLab.json/createUIDefinitionUri/https%3A%2F%2Fraw.githubusercontent.com%2Fdloder0%2FSecPrac%2Fmain%2FASDefendLabUI.json)
 
