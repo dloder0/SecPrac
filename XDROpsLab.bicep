@@ -648,10 +648,10 @@ module Add_AttackerUbuntuCaldera './createVirtualMachine.bicep' = {
     adminPassword: adminPassword
     adminFullUsername: attackerUsername
     imageReference: {
-      Offer: '0001-com-ubuntu-server-jammy'
+      Offer: 'ubuntu-25_04'
       version: 'latest'
       Publisher: 'Canonical'
-      Sku: '25_04-lts-gen2'
+      Sku: 'server'
     }
     imagePlan: {}
     waitOnDNS: false

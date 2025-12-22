@@ -5,7 +5,7 @@
     "_generator": {
       "name": "bicep",
       "version": "0.39.26.7824",
-      "templateHash": "13740112397013910375"
+      "templateHash": "18065945636806737329"
     }
   },
   "parameters": {
@@ -4397,10 +4397,10 @@
           },
           "imageReference": {
             "value": {
-              "Offer": "0001-com-ubuntu-server-jammy",
+              "Offer": "ubuntu-25_04",
               "version": "latest",
               "Publisher": "Canonical",
-              "Sku": "25_04-lts-gen2"
+              "Sku": "server"
             }
           },
           "imagePlan": {
