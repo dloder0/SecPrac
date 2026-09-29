@@ -4,8 +4,8 @@
   "metadata": {
     "_generator": {
       "name": "bicep",
-      "version": "0.38.33.27573",
-      "templateHash": "16518045135327597932"
+      "version": "0.47.16.16243",
+      "templateHash": "7018033921898566749"
     }
   },
   "parameters": {
@@ -404,8 +404,8 @@
           "metadata": {
             "_generator": {
               "name": "bicep",
-              "version": "0.38.33.27573",
-              "templateHash": "13359623935519760536"
+              "version": "0.47.16.16243",
+              "templateHash": "12207593035432333819"
             }
           },
           "parameters": {
@@ -749,7 +749,7 @@
             "value": {
               "version": "latest",
               "Publisher": "MicrosoftWindowsDesktop",
-              "Sku": "win10-22h2-ent-g2",
+              "Sku": "win10-22h2-pro-g2",
               "Offer": "Windows-10"
             }
           },
@@ -769,8 +769,8 @@
           "metadata": {
             "_generator": {
               "name": "bicep",
-              "version": "0.38.33.27573",
-              "templateHash": "13359623935519760536"
+              "version": "0.47.16.16243",
+              "templateHash": "12207593035432333819"
             }
           },
           "parameters": {
@@ -1115,7 +1115,7 @@
             "value": {
               "version": "latest",
               "Publisher": "MicrosoftWindowsDesktop",
-              "Sku": "win10-22h2-ent-g2",
+              "Sku": "win10-22h2-pro-g2",
               "Offer": "Windows-10"
             }
           },
@@ -1135,8 +1135,8 @@
           "metadata": {
             "_generator": {
               "name": "bicep",
-              "version": "0.38.33.27573",
-              "templateHash": "13359623935519760536"
+              "version": "0.47.16.16243",
+              "templateHash": "12207593035432333819"
             }
           },
           "parameters": {
@@ -1481,7 +1481,7 @@
             "value": {
               "version": "latest",
               "Publisher": "microsoftwindowsdesktop",
-              "Sku": "win11-25h2-ent",
+              "Sku": "win11-24h2-ent",
               "Offer": "windows-11"
             }
           },
@@ -1501,8 +1501,8 @@
           "metadata": {
             "_generator": {
               "name": "bicep",
-              "version": "0.38.33.27573",
-              "templateHash": "13359623935519760536"
+              "version": "0.47.16.16243",
+              "templateHash": "12207593035432333819"
             }
           },
           "parameters": {
@@ -1802,7 +1802,7 @@
     {
       "type": "Microsoft.Resources/deployments",
       "apiVersion": "2025-04-01",
-      "name": "Add_SVR16_ADFS",
+      "name": "Add_SVR22_ADFS",
       "properties": {
         "expressionEvaluationOptions": {
           "scope": "inner"
@@ -1810,7 +1810,7 @@
         "mode": "Incremental",
         "parameters": {
           "vmName": {
-            "value": "SVR16-ADFS"
+            "value": "SVR22-ADFS"
           },
           "virtualNetworkName": {
             "value": "contosoVNet"
@@ -1846,7 +1846,7 @@
             "value": {
               "version": "latest",
               "Publisher": "MicrosoftWindowsServer",
-              "Sku": "2016-datacenter-gensecond",
+              "Sku": "2022-datacenter-g2",
               "Offer": "WindowsServer"
             }
           },
@@ -1866,8 +1866,8 @@
           "metadata": {
             "_generator": {
               "name": "bicep",
-              "version": "0.38.33.27573",
-              "templateHash": "13359623935519760536"
+              "version": "0.47.16.16243",
+              "templateHash": "12207593035432333819"
             }
           },
           "parameters": {
@@ -2232,8 +2232,8 @@
           "metadata": {
             "_generator": {
               "name": "bicep",
-              "version": "0.38.33.27573",
-              "templateHash": "13359623935519760536"
+              "version": "0.47.16.16243",
+              "templateHash": "12207593035432333819"
             }
           },
           "parameters": {
@@ -2598,8 +2598,8 @@
           "metadata": {
             "_generator": {
               "name": "bicep",
-              "version": "0.38.33.27573",
-              "templateHash": "13359623935519760536"
+              "version": "0.47.16.16243",
+              "templateHash": "12207593035432333819"
             }
           },
           "parameters": {
@@ -2964,8 +2964,8 @@
           "metadata": {
             "_generator": {
               "name": "bicep",
-              "version": "0.38.33.27573",
-              "templateHash": "13359623935519760536"
+              "version": "0.47.16.16243",
+              "templateHash": "12207593035432333819"
             }
           },
           "parameters": {
@@ -3309,7 +3309,7 @@
             "value": {
               "version": "latest",
               "Publisher": "MicrosoftWindowsDesktop",
-              "Sku": "win10-22h2-ent-g2",
+              "Sku": "win10-22h2-pro-g2",
               "Offer": "Windows-10"
             }
           },
@@ -3329,8 +3329,8 @@
           "metadata": {
             "_generator": {
               "name": "bicep",
-              "version": "0.38.33.27573",
-              "templateHash": "13359623935519760536"
+              "version": "0.47.16.16243",
+              "templateHash": "12207593035432333819"
             }
           },
           "parameters": {
@@ -3672,12 +3672,12 @@
               "Offer": "kali",
               "version": "latest",
               "Publisher": "kali-linux",
-              "Sku": "kali-2025-3"
+              "Sku": "kali-2026-2"
             }
           },
           "imagePlan": {
             "value": {
-              "name": "kali-2025-3",
+              "name": "kali-2026-2",
               "publisher": "kali-linux",
               "product": "kali"
             }
@@ -3695,8 +3695,8 @@
           "metadata": {
             "_generator": {
               "name": "bicep",
-              "version": "0.38.33.27573",
-              "templateHash": "13359623935519760536"
+              "version": "0.47.16.16243",
+              "templateHash": "12207593035432333819"
             }
           },
           "parameters": {
@@ -4057,8 +4057,8 @@
           "metadata": {
             "_generator": {
               "name": "bicep",
-              "version": "0.38.33.27573",
-              "templateHash": "13359623935519760536"
+              "version": "0.47.16.16243",
+              "templateHash": "12207593035432333819"
             }
           },
           "parameters": {

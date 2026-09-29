@@ -419,10 +419,10 @@ module Add_Win11_CFO './createVirtualMachine.bicep' = {
   ]
 }
 
-module Add_SVR16_ADFS './createVirtualMachine.bicep' = {
-  name: 'Add_SVR16_ADFS'
+module Add_SVR22_ADFS './createVirtualMachine.bicep' = {
+  name: 'Add_SVR22_ADFS'
   params: {
-    vmName: 'SVR16-ADFS'
+    vmName: 'SVR22-ADFS'
     virtualNetworkName: 'contosoVNet'
     subnetName: 'contosoSubnet'
     NSGName: 'contosoVnetNSG'
@@ -436,7 +436,7 @@ module Add_SVR16_ADFS './createVirtualMachine.bicep' = {
     imageReference: {
       version: 'latest'
       Publisher: 'MicrosoftWindowsServer'
-      Sku: '2016-datacenter-gensecond'
+      Sku: '2022-datacenter-g2'
       Offer: 'WindowsServer'
     }
     imagePlan: {}
@@ -589,10 +589,10 @@ module Add_AttackerKali './createVirtualMachine.bicep' = {
       Offer: 'kali'
       version: 'latest'
       Publisher: 'kali-linux'
-      Sku: 'kali-2025-3'
+      Sku: 'kali-2026-2'
     }
     imagePlan: {
-      name: 'kali-2025-3'
+      name: 'kali-2026-2'
       publisher: 'kali-linux'
       product: 'kali'
     }
